@@ -161,6 +161,11 @@ const About = ({
                                         </a>
                                         , where he focuses on developing scalable computer vision 
                                         and machine learning solutions for neuroscience applications.
+                                        Currently working on:
+                                        <ul>
+                                            <li>Foundational deep learning model for lightsheet brain microscopy data.</li>
+                                            <li>Extensible protein prediction deep learning framework from NHS-ester dye (pan-protein).</li>
+                                        </ul>
                                     </p>
                                 </div>
                             </div>
