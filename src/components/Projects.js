@@ -308,9 +308,10 @@ const Projects = () => {
             animate={inView ? "visible" : "hidden"}
         >
             <div className="container">
-                <motion.h1 variants={itemVariants}>
-                    Featured Projects
-                </motion.h1>
+                <motion.div className="projects-header-block" variants={itemVariants}>
+                    <span className="section-eyebrow">Work</span>
+                    <h1>Featured Projects</h1>
+                </motion.div>
 
                 <motion.div className="category-filters" variants={itemVariants}>
                     {categories.map(category => (

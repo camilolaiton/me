@@ -7,18 +7,13 @@ import CamiloLaiton_1024x732 from '../imgs/CamiloLaiton_1024x732.jpg';
 import { Icon } from '@iconify/react';
 import { TypeAnimation } from 'react-type-animation';
 
-const Header = ({ name, socialInfo }) => {
-    const [theme, setTheme] = useState('dark');
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-        document.body.setAttribute('data-theme', newTheme);
-    };
+const Header = ({ name, socialInfo, theme, toggleTheme }) => {
+    const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
-        // Set initial theme to dark
-        document.body.setAttribute('data-theme', 'dark');
+        const onScroll = () => setScrollY(window.scrollY);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     const containerVariants = {
@@ -76,7 +71,12 @@ const Header = ({ name, socialInfo }) => {
 
     return (
         <section className="header" id="header">
-            <motion.div 
+            <div
+                className="hero-bg"
+                style={{ transform: `translateY(${scrollY * 0.4}px)` }}
+            />
+            <div className="hero-overlay" />
+            <motion.div
                 className="header-content"
                 variants={containerVariants}
                 initial="hidden"

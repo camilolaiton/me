@@ -1,6 +1,6 @@
 /* Academic Skills Section Styling */
 .skills {
-  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-alt) 100%);
+  background: var(--color-background);
   padding: var(--spacing-4xl) 0;
   position: relative;
   overflow: hidden;
@@ -17,16 +17,24 @@
   pointer-events: none;
 }
 
+.skills-header-block {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  z-index: 2;
+}
+
 .skills-title {
   color: var(--color-text-primary);
   font-family: var(--font-family-heading);
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: 0;
   position: relative;
   z-index: 2;
   letter-spacing: -0.02em;
+  display: inline-block;
 }
 
 .skills-title::after {
@@ -41,14 +49,48 @@
   border-radius: var(--border-radius-sm);
 }
 
+/* Category groups */
+.skills-category {
+  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  z-index: 2;
+}
+
+.skills-category:last-child {
+  margin-bottom: 0;
+}
+
+.skills-category__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-background-alt);
+}
+
+.skills-category__icon {
+  color: var(--color-accent, #059669);
+}
+
+.skills-category__label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: var(--spacing-xl);
   max-width: 1000px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  padding: 0;
 }
 
 .skill-item {

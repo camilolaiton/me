@@ -1,6 +1,6 @@
 /* Academic Publications Section Styling */
 .publications {
-  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-alt) 100%);
+  background: var(--color-background);
   padding: var(--spacing-4xl) 0;
   position: relative;
   overflow: hidden;
@@ -17,16 +17,24 @@
   pointer-events: none;
 }
 
+.publications-header-block {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  z-index: 2;
+}
+
 .publications h1 {
   color: var(--color-text-primary);
   font-family: var(--font-family-heading);
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: 0;
   position: relative;
   z-index: 2;
   letter-spacing: -0.02em;
+  display: inline-block;
 }
 
 .publications h1::after {

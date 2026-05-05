@@ -4,16 +4,22 @@ import './index.css';
 import Header from './components/Header';
 import About from './components/About';
 import Projects from './components/Projects';
-import WorkExperience from './components/WorkExperience';
-// import ResearchExperience from './components/ResearchExperience';
 import Publications from './components/Publications';
-import Skills from './components/Skills';
+import BlogPosts from './components/BlogPosts';
+import GitHubActivity from './components/GitHubActivity';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 
 const App = () => {
   const [sharedData, setSharedData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.body.setAttribute('data-theme', newTheme);
+  };
 
   const loadProfileData = async () => {
     try {
@@ -33,6 +39,7 @@ const App = () => {
 
   useEffect(() => {
     loadProfileData();
+    document.body.setAttribute('data-theme', 'light');
   }, []);
 
   if (loading) {
@@ -42,8 +49,8 @@ const App = () => {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        background: 'var(--gradient-hero)',
-        color: 'var(--color-text-on-dark)',
+        background: 'var(--color-background)',
+        color: 'var(--color-text-primary)',
         fontSize: 'var(--font-size-lg)',
         fontWeight: 'var(--font-weight-medium)'
       }}>
@@ -55,46 +62,37 @@ const App = () => {
   return (
     <div className="App">
       <Navigation />
-      
-      <Header 
+
+      {/* 1 — Hero */}
+      <Header
         name={sharedData.name}
-        socialInfo={sharedData.social}  
-      />
-      
-      <About 
-        languages={sharedData.speakLanguages}
-      />
-      
-      <Projects />
-      
-      <WorkExperience 
-        workInfo={sharedData.projects}
+        socialInfo={sharedData.social}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
 
-      <Publications 
-        researchInfo={sharedData.research}
-      />
-      
-      <Skills 
-        sharedSkills={sharedData.skills}
-        resumeBasicInfo={sharedData.name}
-      />
-{/*       
-      <ResearchExperience 
-        researchInfo={sharedData.research}
-      /> */}
-      
-      <About 
+      {/* 2 — GitHub Activity */}
+      <GitHubActivity isDark={theme === 'dark'} />
+
+      {/* 3 — About */}
+      <About
+        languages={sharedData.speakLanguages}
         honors={sharedData.honors}
         certificates={sharedData.certificates}
-        showAbout={false}
-        showHonors={true}
-        showCertificates={false}
       />
-      
-      <Footer 
+
+      {/* 4 — Featured Projects */}
+      <Projects />
+
+      {/* 5 — Publications */}
+      <Publications researchInfo={sharedData.research} />
+
+      {/* 6 — Blog */}
+      <BlogPosts />
+
+      <Footer
         socialInfo={sharedData.social}
-        name={sharedData.name}  
+        name={sharedData.name}
       />
     </div>
   );

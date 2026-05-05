@@ -1,3 +1,40 @@
+/* ─── Work Experience Section ────────────────────────────── */
+.work-experience {
+  background: var(--color-background);
+  padding: var(--spacing-4xl) 0;
+  position: relative;
+}
+
+.work-experience__header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  z-index: 2;
+}
+
+.work-experience__title {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  display: inline-block;
+  position: relative;
+}
+
+.work-experience__title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: var(--border-radius-sm);
+}
+
+/* ─── Timeline item styles ─── */
 .itemTitle {
     font-size: var(--font-size-lg);
     text-align: justify;

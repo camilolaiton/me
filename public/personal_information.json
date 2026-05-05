@@ -30,6 +30,10 @@
   ],
   "honors": [
     {
+      "honor": "Meritorious Masters Degree - Awarded for my thesis research on deep learning for brain MRI segmentation.",
+      "year": 2022
+    },
+    {
       "honor": "BEDA Scholarship recipient awarded for maintaining a 5.0/5.0 GPA in the Masters program.",
       "year": "2021-2022"
     },
@@ -84,6 +88,12 @@
       "color": "blue"
     },
     {
+      "title": "Michigan Language Assessment Test (MET) - English Proficiency Test",
+      "url": "https://www.linkedin.com/in/camilolaiton/overlay/Certifications/75064885/treasury/?profileId=ACoAADElcBABnKcIfW1XZKruq0wgXTK3FTNdnIo",
+      "class": "twemoji:flag-for-flag-united-states",
+      "color": ""
+    },
+    {
       "title": "DELF B2",
       "url": "",
       "class": "twemoji:flag-for-flag-france",
@@ -94,24 +104,6 @@
       "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/GY4LZ44MDF74",
       "class": "cib:coursera",
       "color": "blue"
-    },
-    {
-      "title": "PHP with Laravel",
-      "url": "https://platzi.com/@camilolaiton/curso/1467-course/diploma/detalle/",
-      "class": "simple-icons:platzi",
-      "color": "green"
-    },
-    {
-      "title": "React.js course",
-      "url": "https://platzi.com/@camilolaiton/curso/1548-react/diploma/detalle/",
-      "class": "simple-icons:platzi",
-      "color": "green"
-    },
-    {
-      "title": "Redux course",
-      "url": "https://platzi.com/@camilolaiton/curso/1613-redux/diploma/detalle/",
-      "class": "simple-icons:platzi",
-      "color": "green"
     },
     {
       "title": "Git and Github profesional course",
@@ -131,6 +123,12 @@
       "name": "linkedin",
       "url": "https://www.linkedin.com/in/camilolaiton/",
       "class": "akar-icons:linkedin-fill",
+      "color": "white"
+    },
+    {
+      "name": "medium",
+      "url": "https://medium.com/@camilolaitonb",
+      "class": "simple-icons:medium",
       "color": "white"
     }
   ],
@@ -219,9 +217,9 @@
       "endDate": "02/2022",
       "topics": [
         "Deep Learning",
-        "Brain Segmentation",
+        "Brain Digital Processing",
         "Transformers",
-        "3D Segmentation"
+        "Brain 3D Segmentation"
       ],
       "technologies": [
         {
@@ -266,8 +264,8 @@
         },
         {
           "title": "Self-attention unet-based architecture for gray matter segmentation in brain imaging",
-          "url": "#",
-          "state": "Pending publication"
+          "url": "https://www.iiis.org/CDs2023/CD2023Summer/papers/CA353MR.pdf",
+          "state": "Published - Conferencia Iberoamericana en Sistemas, Cibernética e Informática (CISCI 2023)"
         },
         {
           "title": "Skull stripping of MRI images using a deep 3D neural network with self-attention modules",
@@ -416,6 +414,60 @@
         }
       ],
       "images": []
+    },
+    {
+      "id": "5",
+      "startDate": "01/2025",
+      "endDate": "04/2026",
+      "topics": [
+        "Deep Learning",
+        "Brain Digital Processing",
+        "Transformers",
+        "Noise Removal"
+      ],
+      "technologies": [
+        {
+          "name": "Pytorch",
+          "class": "logos:pytorch",
+          "color": "white"
+        },
+        {
+          "name": "Python",
+          "class": "logos:python",
+          "color": ""
+        }
+      ],
+      "researchGroup": "GIDIA",
+      "organization": "National University of Colombia",
+      "tutors": [
+        {
+          "name": "Camilo Laiton",
+          "cvlac": "https://www.linkedin.com/in/camilolaiton/"
+        },
+        {
+          "name": "Prof. German Sanchez",
+          "cvlac": "https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000479918"
+        },
+        {
+          "name": "Prof. Jhon Branch",
+          "cvlac": "https://scienti.minciencias.gov.co/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000027090"
+        }
+      ],
+      "spanish": {
+        "title": "Tutor en la tesis de maestría: Método para la limpieza de imágenes de resonancia magnética cerebrales"
+      },
+      "english": {
+        "title": "Tutor in the master's thesis: Method for cleaning brain magnetic resonance images"
+      },
+      "pubs": [
+        {
+          "title": "Radon-Guided Wavelet-Domain Attention U-Net for Periodic Artifact Suppression in Brain MRI",
+          "url": "https://doi.org/10.3390/jimaging12040153",
+          "state": "Published - Journal of Imaging | DOI: 10.3390/jimaging12040153"
+        }
+      ],
+      "images": [
+      ]
     }
   ],
   "projects": [
@@ -744,72 +796,86 @@
     {
       "name": "Python",
       "class": "logos:python",
-      "color": ""
-    },
-    {
-      "name": "NextFlow",
-      "class": "vscode-icons:file-type-nextflow",
-      "color": ""
-    },
-    {
-      "name": "Docker",
-      "class": "devicon:docker",
-      "color": ""
-    },
-    {
-      "name": "AWS",
-      "class": "skill-icons:aws-dark",
-      "color": ""
-    },
-    {
-      "name": "Distributed Computing (SLURM)",
-      "class": "ant-design:cluster-outlined",
-      "color": "white"
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Tensorflow",
       "class": "logos:tensorflow",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Pytorch",
       "class": "skill-icons:pytorch-dark",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Databricks",
       "class": "simple-icons:databricks",
-      "color": "orangered"
+      "color": "orangered",
+      "category": "ml"
     },
     {
       "name": "Numpy",
       "class": "logos:numpy",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Dask",
       "class": "simple-icons:dask",
-      "color": "orangered"
+      "color": "orangered",
+      "category": "ml"
     },
     {
-      "name": "scikitlearn",
+      "name": "scikit-learn",
       "class": "skill-icons:scikitlearn-dark",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
-      "name": "Scipy",
+      "name": "SciPy",
       "class": "simple-icons:scipy",
-      "color": "lightblue"
+      "color": "lightblue",
+      "category": "ml"
+    },
+    {
+      "name": "AWS",
+      "class": "skill-icons:aws-dark",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "Docker",
+      "class": "devicon:docker",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "NextFlow",
+      "class": "vscode-icons:file-type-nextflow",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "SLURM / HPC",
+      "class": "ant-design:cluster-outlined",
+      "color": "white",
+      "category": "infra"
     },
     {
       "name": "C/C++",
       "class": "streamline-logos:c-language-logo-solid",
-      "color": "white"
+      "color": "white",
+      "category": "languages"
     },
     {
-      "name": "And more...",
-      "class": "bi:three-dots",
-      "color": "white"
+      "name": "JavaScript",
+      "class": "logos:javascript",
+      "color": "",
+      "category": "languages"
     }
   ]
 }

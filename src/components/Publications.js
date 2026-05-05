@@ -107,9 +107,10 @@ const Publications = ({ researchInfo }) => {
             animate={inView ? "visible" : "hidden"}
         >
             <div className="container">
-                <motion.h1 variants={itemVariants}>
-                    Publications
-                </motion.h1>
+                <motion.div className="publications-header-block" variants={itemVariants}>
+                    <span className="section-eyebrow">Research</span>
+                    <h1>Publications</h1>
+                </motion.div>
 
                 <motion.div 
                     className="publications-grid"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import '../css/Navigation.css';
@@ -13,14 +13,14 @@ const Navigation = () => {
     restDelta: 0.001
   });
 
-  const navItems = [
-    { id: 'header', label: 'Home', icon: 'hugeicons:home-01' },
-    { id: 'about', label: 'About', icon: 'hugeicons:user' },
-    { id: 'projects', label: 'Projects', icon: 'hugeicons:folder-02' },
-    { id: 'work-experience', label: 'Experience', icon: 'hugeicons:briefcase-01' },
-    { id: 'skills', label: 'Skills', icon: 'hugeicons:settings-02' },
-    { id: 'research-experience', label: 'Research', icon: 'hugeicons:search-02' },
-  ];
+  const navItems = useMemo(() => [
+    { id: 'header',          label: 'Home',         icon: 'hugeicons:home-01' },
+    { id: 'about',           label: 'About',        icon: 'hugeicons:user' },
+    { id: 'projects',        label: 'Projects',     icon: 'hugeicons:folder-02' },
+    { id: 'publications',    label: 'Publications', icon: 'hugeicons:book-02' },
+    { id: 'blog-posts',      label: 'Blog',         icon: 'simple-icons:medium' },
+    { id: 'github-activity', label: 'GitHub',       icon: 'akar-icons:github-fill' },
+  ], []);
 
   useEffect(() => {
     const handleScroll = () => {
