@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.6d537ae7.css",
-    "main.js": "/portfolio/static/js/main.b9d60c58.js",
+    "main.css": "/portfolio/static/css/main.480b9db3.css",
+    "main.js": "/portfolio/static/js/main.0257a9a8.js",
     "static/js/874.dfb5500a.chunk.js": "/portfolio/static/js/874.dfb5500a.chunk.js",
     "static/js/488.fc9583c9.chunk.js": "/portfolio/static/js/488.fc9583c9.chunk.js",
     "static/media/CamiloLaiton_1024x732.jpg": "/portfolio/static/media/CamiloLaiton_1024x732.85f876c3ac1bfb35bd2d.jpg",
     "static/media/CamiloLaiton_540x386.jpg": "/portfolio/static/media/CamiloLaiton_540x386.a251d1dd106151f00663.jpg",
     "index.html": "/portfolio/index.html",
-    "main.6d537ae7.css.map": "/portfolio/static/css/main.6d537ae7.css.map",
-    "main.b9d60c58.js.map": "/portfolio/static/js/main.b9d60c58.js.map",
+    "main.480b9db3.css.map": "/portfolio/static/css/main.480b9db3.css.map",
+    "main.0257a9a8.js.map": "/portfolio/static/js/main.0257a9a8.js.map",
     "874.dfb5500a.chunk.js.map": "/portfolio/static/js/874.dfb5500a.chunk.js.map",
     "488.fc9583c9.chunk.js.map": "/portfolio/static/js/488.fc9583c9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d537ae7.css",
-    "static/js/main.b9d60c58.js"
+    "static/css/main.480b9db3.css",
+    "static/js/main.0257a9a8.js"
   ]
 }
