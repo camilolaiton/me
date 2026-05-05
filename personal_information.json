@@ -132,6 +132,12 @@
       "url": "https://www.linkedin.com/in/camilolaiton/",
       "class": "akar-icons:linkedin-fill",
       "color": "white"
+    },
+    {
+      "name": "medium",
+      "url": "https://medium.com/@camilolaitonb",
+      "class": "simple-icons:medium",
+      "color": "white"
     }
   ],
   "profileImage": "CamiloLaiton.png",
@@ -744,72 +750,86 @@
     {
       "name": "Python",
       "class": "logos:python",
-      "color": ""
-    },
-    {
-      "name": "NextFlow",
-      "class": "vscode-icons:file-type-nextflow",
-      "color": ""
-    },
-    {
-      "name": "Docker",
-      "class": "devicon:docker",
-      "color": ""
-    },
-    {
-      "name": "AWS",
-      "class": "skill-icons:aws-dark",
-      "color": ""
-    },
-    {
-      "name": "Distributed Computing (SLURM)",
-      "class": "ant-design:cluster-outlined",
-      "color": "white"
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Tensorflow",
       "class": "logos:tensorflow",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Pytorch",
       "class": "skill-icons:pytorch-dark",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Databricks",
       "class": "simple-icons:databricks",
-      "color": "orangered"
+      "color": "orangered",
+      "category": "ml"
     },
     {
       "name": "Numpy",
       "class": "logos:numpy",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
       "name": "Dask",
       "class": "simple-icons:dask",
-      "color": "orangered"
+      "color": "orangered",
+      "category": "ml"
     },
     {
-      "name": "scikitlearn",
+      "name": "scikit-learn",
       "class": "skill-icons:scikitlearn-dark",
-      "color": ""
+      "color": "",
+      "category": "ml"
     },
     {
-      "name": "Scipy",
+      "name": "SciPy",
       "class": "simple-icons:scipy",
-      "color": "lightblue"
+      "color": "lightblue",
+      "category": "ml"
+    },
+    {
+      "name": "AWS",
+      "class": "skill-icons:aws-dark",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "Docker",
+      "class": "devicon:docker",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "NextFlow",
+      "class": "vscode-icons:file-type-nextflow",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "SLURM / HPC",
+      "class": "ant-design:cluster-outlined",
+      "color": "white",
+      "category": "infra"
     },
     {
       "name": "C/C++",
       "class": "streamline-logos:c-language-logo-solid",
-      "color": "white"
+      "color": "white",
+      "category": "languages"
     },
     {
-      "name": "And more...",
-      "class": "bi:three-dots",
-      "color": "white"
+      "name": "JavaScript",
+      "class": "logos:javascript",
+      "color": "",
+      "category": "languages"
     }
   ]
 }
