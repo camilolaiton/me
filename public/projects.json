@@ -11,7 +11,7 @@
       "short_description": "We aim to predict protein localization from pan-protein signals in LICONN lightsheet microscopy.",
       "technologies": ["pytorch", "python", "dask"],
       "github_url": "",
-      "demo_url": "https://tinyurl.com/2vxxaba2",
+      "demo_url": "https://tinyurl.com/4ztnkpvj",
       "paper_url": "",
       "images": [
         {
@@ -114,7 +114,7 @@
       "short_description": "A package for running cellpose in large microscopy datasets using cloud computing resources.",
       "technologies": ["pytorch", "python"],
       "github_url": "https://github.com/AllenNeuralDynamics/aind-large-scale-cellpose",
-      "demo_url": "",
+      "demo_url": "https://tinyurl.com/3fd7cdck",
       "paper_url": "https://github.com/AllenNeuralDynamics/aind-large-scale-cellpose",
       "images": [
         {
@@ -160,7 +160,7 @@
       "short_description": "A package for running RNA detection in large microscopy datasets using cloud computing resources.",
       "technologies": ["numpy", "cuda", "scipy", "python"],
       "github_url": "https://github.com/AllenNeuralDynamics/aind-z1-spot-detection",
-      "demo_url": "",
+      "demo_url": "https://tinyurl.com/2thpfzrw",
       "paper_url": "",
       "images": [
         {
