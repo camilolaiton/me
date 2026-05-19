@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
+// import RecruiterSnapshot from './components/RecruiterSnapshot';
 import FeaturedOutputs from './components/FeaturedOutputs';
 import Projects from './components/Projects';
 import Publications from './components/Publications';
@@ -74,6 +75,13 @@ const App = () => {
         theme={theme}
         toggleTheme={toggleTheme}
       />
+
+      {/* §00A — Recruiter Snapshot */}
+      {/* <RecruiterSnapshot
+        metrics={sharedData.metrics}
+        skills={sharedData.skills}
+        socialInfo={sharedData.social}
+      /> */}
 
       {/* §01 — Featured Outputs */}
       <FeaturedOutputs />

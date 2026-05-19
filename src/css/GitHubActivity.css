@@ -117,22 +117,6 @@
   background: var(--paper);
 }
 
-/* Improve activity calendar text readability in dark mode */
-[data-theme="dark"] .gh-calendar-wrapper {
-  color: var(--ink);
-}
-
-[data-theme="dark"] .gh-calendar-wrapper svg text {
-  fill: var(--ink) !important;
-}
-
-[data-theme="dark"] .gh-calendar-wrapper .react-activity-calendar__count,
-[data-theme="dark"] .gh-calendar-wrapper .react-activity-calendar__legend-month,
-[data-theme="dark"] .gh-calendar-wrapper .react-activity-calendar__footer,
-[data-theme="dark"] .gh-calendar-wrapper .react-github-calendar__footer {
-  color: var(--ink) !important;
-}
-
 .gh-skeleton {
   height: 130px;
   width: 100%;

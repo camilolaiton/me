@@ -3,6 +3,7 @@ import { useLang } from '../context/LangContext';
 import '../css/Navigation.css';
 
 const navItems = [
+  { id: 'recruiter-snapshot', label: 'Snapshot' },
   { id: 'projects',        label: 'Work' },
   { id: 'publications',    label: 'Publications' },
   { id: 'work-experience', label: 'Experience' },

@@ -7,7 +7,7 @@
   "metrics": [
     { "value": "3+ PB",   "label": "Imaging data processed",  "highlight": true },
     { "value": "3,500+", "label": "Whole brains processed",      "highlight": false },
-    { "value": "6+",     "label": "Years in production AI",   "highlight": false },
+    { "value": "7+",     "label": "Years in production AI",   "highlight": false },
     { "value": "5",      "label": "Peer-reviewed papers",     "highlight": false }
   ],
   "titles": [
