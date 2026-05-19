@@ -1,94 +1,224 @@
-/* GitHub Activity — compact add-on section */
 .github-activity {
-  background: var(--color-background);
-  padding: var(--spacing-3xl) 0;
-  position: relative;
+  background: var(--paper);
+  padding: var(--s-9) 0;
+  border-top: 1px solid var(--rule);
 }
 
-.github-section-header {
-  text-align: center;
-  margin-bottom: var(--spacing-2xl);
+.gh-header-block {
+  max-width: 1060px;
+  margin-bottom: var(--s-7);
 }
 
-.github-section-title {
-  color: var(--color-text-primary);
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: -0.02em;
-  margin-bottom: var(--spacing-md);
-  position: relative;
-  display: inline-block;
+.gh-kicker-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-bottom: var(--s-5);
 }
 
-.github-section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 3px;
-  background: var(--color-accent);
-  border-radius: var(--border-radius-sm);
+.gh-kicker-row .sec-num {
+  margin: 0;
 }
 
-.github-section-subtitle {
-  color: var(--color-text-muted);
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-md);
+.gh-kicker-line {
+  flex: 0 0 min(320px, 30vw);
+  height: 1px;
+  background: var(--rule);
 }
 
-/* Calendar wrapper */
-.github-calendar-wrapper {
+.gh-kicker-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.gh-hero-title {
+  font-family: var(--f-serif);
+  color: var(--ink);
+  font-size: clamp(2.1rem, 5vw, 5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.gh-title-accent {
+  color: var(--indigo);
+  font-style: italic;
+}
+
+.gh-hero-copy {
+  margin: var(--s-5) 0 0;
+  max-width: 100ch;
+  color: var(--ink-2);
+  font-family: var(--f-serif);
+  font-size: clamp(1.1rem, 1.05vw + 0.95rem, 2rem);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.gh-inline-url {
+  font-family: var(--f-mono);
+  font-size: 0.9em;
+  color: var(--ink-2);
+}
+
+/* Card */
+.gh-card {
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.gh-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s-4) var(--s-6);
+  border-bottom: 1px solid var(--rule);
+}
+
+.gh-card-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.gh-profile-link {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color 150ms ease;
+  padding-bottom: 2px;
+}
+
+.gh-profile-link:hover {
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+/* Calendar area */
+.gh-calendar-wrapper {
+  padding: var(--s-6);
+  overflow-x: auto;
   display: flex;
   justify-content: center;
-  overflow-x: auto;
-  padding: var(--spacing-xl) var(--spacing-md);
-  border-radius: var(--border-radius-lg);
-  background: var(--color-surface);
-  border: var(--border-width-thin) solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  background: var(--paper);
 }
 
-/* CTA */
-.github-cta {
-  text-align: center;
-  margin-top: var(--spacing-xl);
+/* Improve activity calendar text readability in dark mode */
+[data-theme="dark"] .gh-calendar-wrapper {
+  color: var(--ink);
 }
 
-.github-cta__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-xl);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--border-radius-md);
-  color: var(--color-accent);
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  text-decoration: none;
-  transition: all var(--transition-normal);
+[data-theme="dark"] .gh-calendar-wrapper svg text {
+  fill: var(--ink) !important;
 }
 
-.github-cta__btn:hover {
-  background: var(--color-accent);
-  color: var(--color-text-on-dark);
-  text-decoration: none;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+[data-theme="dark"] .gh-calendar-wrapper .react-activity-calendar__count,
+[data-theme="dark"] .gh-calendar-wrapper .react-activity-calendar__legend-month,
+[data-theme="dark"] .gh-calendar-wrapper .react-activity-calendar__footer,
+[data-theme="dark"] .gh-calendar-wrapper .react-github-calendar__footer {
+  color: var(--ink) !important;
+}
+
+.gh-skeleton {
+  height: 130px;
+  width: 100%;
+  background: var(--paper-2);
+  border-radius: var(--r-sm);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+/* Stats row */
+.gh-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+}
+
+.gh-stat {
+  padding: var(--s-5) var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  border-right: 1px solid var(--rule);
+}
+
+.gh-stat:last-child {
+  border-right: none;
+}
+
+.gh-stat-value {
+  font-family: var(--f-serif);
+  font-size: var(--t-2xl);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.gh-stat-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .github-section-title {
-    font-size: var(--font-size-2xl);
+@media (max-width: 640px) {
+  .gh-header-block {
+    margin-bottom: var(--s-6);
   }
-
-  .github-calendar-wrapper {
-    justify-content: flex-start;
-    padding: var(--spacing-md);
+  .gh-kicker-row {
+    gap: var(--s-3);
+    margin-bottom: var(--s-4);
+  }
+  .gh-kicker-line {
+    flex-basis: 28vw;
+  }
+  .gh-kicker-label {
+    letter-spacing: 0.14em;
+  }
+  .gh-hero-title {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  .gh-hero-copy {
+    margin-top: var(--s-4);
+    max-width: 100%;
+    font-size: clamp(1rem, 4.2vw, 1.35rem);
+    line-height: 1.5;
+  }
+  .gh-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gh-stat:nth-child(2) {
+    border-right: none;
+  }
+  .gh-stat:nth-child(1),
+  .gh-stat:nth-child(2) {
+    border-bottom: 1px solid var(--rule);
+  }
+  .gh-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-2);
   }
 }

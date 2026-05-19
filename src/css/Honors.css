@@ -1,0 +1,231 @@
+.honors {
+  background: var(--paper-2);
+  padding: var(--s-9) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.honors-header {
+  margin-bottom: var(--s-7);
+  max-width: 980px;
+}
+
+.honors-hero-title {
+  font-family: var(--f-serif);
+  font-size: clamp(2.1rem, 5vw, 5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.honors-kicker-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-bottom: var(--s-5);
+}
+
+.honors-kicker-row .sec-num {
+  margin: 0;
+}
+
+.honors-kicker-line {
+  flex: 0 0 min(320px, 30vw);
+  height: 1px;
+  background: var(--rule);
+}
+
+.honors-kicker-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.honors-title-accent {
+  color: var(--indigo);
+  font-style: italic;
+}
+
+/* Two-column grid */
+.honors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-9);
+  align-items: start;
+}
+
+.honors-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.honors-col-title {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0;
+}
+
+.honors-col-title--spaced {
+  margin-top: var(--s-5);
+}
+
+/* Honors list */
+.honors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.honor-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--s-4);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding: var(--s-4) 0;
+  border-left: 2px solid transparent;
+  padding-left: var(--s-3);
+  transition: border-color 150ms ease;
+}
+
+.honor-row:hover {
+  border-left-color: var(--amber);
+}
+
+.honor-year {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--amber);
+  padding-top: 2px;
+}
+
+.honor-text {
+  font-family: var(--f-serif);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Certificates */
+.certs-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.cert-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-3);
+  font-family: var(--f-sans);
+  font-size: 12px;
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: border-color 150ms ease, color 150ms ease;
+  background: var(--paper);
+  line-height: 1.4;
+}
+
+.cert-row:hover {
+  border-color: var(--indigo);
+  color: var(--indigo);
+  text-decoration: none;
+}
+
+.cert-row--no-link {
+  cursor: default;
+}
+
+.cert-row--no-link:hover {
+  border-color: var(--rule);
+  color: var(--ink-2);
+}
+
+/* Language bars */
+.lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.lang-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.lang-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lang-name {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--f-serif);
+  font-size: var(--t-md);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.lang-level {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  text-align: right;
+}
+
+.lang-track {
+  height: 3px;
+  background: var(--rule);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lang-fill {
+  height: 100%;
+  background: var(--indigo);
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .honors-header {
+    margin-bottom: var(--s-6);
+  }
+  .honors-kicker-row {
+    gap: var(--s-3);
+    margin-bottom: var(--s-4);
+  }
+  .honors-kicker-line {
+    flex-basis: 28vw;
+  }
+  .honors-kicker-label {
+    letter-spacing: 0.14em;
+  }
+  .honors-hero-title {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  .honors-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-7);
+  }
+}

@@ -4,6 +4,12 @@
     "spanish": "Escoja el idioma del portfolio"
   },
   "name": "Camilo Laiton",
+  "metrics": [
+    { "value": "3+ PB",   "label": "Imaging data processed",  "highlight": true },
+    { "value": "3,500+", "label": "Whole brains processed",      "highlight": false },
+    { "value": "6+",     "label": "Years in production AI",   "highlight": false },
+    { "value": "5",      "label": "Peer-reviewed papers",     "highlight": false }
+  ],
   "titles": [
     "Machine Learning Developer",
     "Deep Learning Researcher",
@@ -517,7 +523,7 @@
       "english": {
         "title": "Software Engineer III - Computer Vision",
         "description": [
-          "In charge of a large-scale image processing pipeline in the cloud, which has processed 3 PBs (~3000 mesoscale whole-brains) at the moment.",
+          "In charge of a large-scale image processing pipeline in the cloud, which has processed 3.4 PBs (~3600 mesoscale whole-brains) at the moment.",
           "Retrospective flatfield correction applied to large-scale data (hundreds of GBs to many TBs).",
           "Development of a template to be able to register brains acquired from light-sheet imaging to the Common Coordinate Framework (CCF).",
           "Large-scale mRNA identification using cloud computing resources.",

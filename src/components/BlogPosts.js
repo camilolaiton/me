@@ -55,6 +55,26 @@ const BlogPosts = () => {
 
   if (!loading && (error || posts.length === 0)) return null;
 
+  const toWord = (value) => {
+    const words = {
+      0: 'Zero',
+      1: 'One',
+      2: 'Two',
+      3: 'Three',
+      4: 'Four',
+      5: 'Five',
+      6: 'Six',
+      7: 'Seven',
+      8: 'Eight',
+      9: 'Nine',
+      10: 'Ten',
+    };
+    return words[value] || `${value}`;
+  };
+
+  const visiblePostCount = loading ? MAX_POSTS : posts.length;
+  const blogLead = toWord(visiblePostCount);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.6, staggerChildren: 0.15 } },
@@ -76,11 +96,15 @@ const BlogPosts = () => {
     >
       <div className="container">
         <motion.div className="blog-section-header" variants={itemVariants}>
-          <span className="section-eyebrow">Blog</span>
-          <h1 className="blog-section-title">From My Blog</h1>
-          <p className="blog-section-subtitle">
-            Thoughts on machine learning, computer vision, and software engineering
-          </p>
+          <div className="blog-kicker-row">
+            <span className="sec-num">§08</span>
+            <span className="blog-kicker-line" aria-hidden="true" />
+            <span className="blog-kicker-label">From My Blog</span>
+          </div>
+          <h2 className="blog-section-title">
+            {/* <span className="blog-title-accent">{blogLead} posts</span>, on machine learning and computer vision. */}
+            <span className="blog-title-accent">Thoughts on</span> machine learning and computer vision at scale.
+          </h2>
         </motion.div>
 
         <motion.div className="blog-grid" variants={containerVariants}>

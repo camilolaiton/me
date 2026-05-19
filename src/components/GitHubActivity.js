@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -9,72 +9,119 @@ const API_URL = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNA
 
 const calendarTheme = {
   dark:  ['#1a1410', '#78350f', '#92400e', '#b45309', '#d97706'],
-  light: ['#f3ede4', '#fde68a', '#fbbf24', '#f59e0b', '#d97706'],
+  light: ['#e8e1d2', '#fde68a', '#fbbf24', '#f59e0b', '#d97706'],
+};
+
+const computeStats = (contributions) => {
+  if (!contributions || contributions.length === 0) return null;
+  const total = contributions.reduce((s, d) => s + d.count, 0);
+  const active = contributions.filter(d => d.count > 0).length;
+
+  let streak = 0, maxStreak = 0, cur = 0;
+  for (const d of contributions) {
+    if (d.count > 0) { cur++; if (cur > maxStreak) maxStreak = cur; }
+    else cur = 0;
+  }
+  streak = maxStreak;
+
+  const busiest = contributions.reduce((m, d) => d.count > m.count ? d : m, { count: 0, date: '' });
+
+  return { total, active, streak, busiest };
 };
 
 const GitHubActivity = ({ isDark }) => {
   const [state, setState] = useState({ status: 'loading', data: null });
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
   useEffect(() => {
     fetch(API_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error('fetch failed');
-        return res.json();
-      })
+      .then((res) => { if (!res.ok) throw new Error(); return res.json(); })
       .then((json) => setState({ status: 'ok', data: json.contributions }))
       .catch(() => setState({ status: 'error', data: null }));
   }, []);
 
-  // Hide section silently on error — same pattern as BlogPosts
-  if (state.status === 'error') return null;
+  const stats = useMemo(() => computeStats(state.data), [state.data]);
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
+  if (state.status === 'error') return null;
 
   return (
     <motion.section
       className="github-activity"
       id="github-activity"
       ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55 }}
     >
       <div className="container">
-        <div className="github-section-header">
-          <span className="section-eyebrow">Activity</span>
-          <h1 className="github-section-title">GitHub Activity</h1>
-          <p className="github-section-subtitle">
-            Open-source contributions over the past year
+        <div className="gh-header-block">
+          <div className="gh-kicker-row">
+            <span className="sec-num">§07</span>
+            <span className="gh-kicker-line" aria-hidden="true" />
+            <span className="gh-kicker-label">GitHub Commits</span>
+          </div>
+          <h2 className="gh-hero-title">
+            What the last year of <span className="gh-title-accent">building</span> looks like.
+          </h2>
+          <p className="gh-hero-copy">
+            Pulled live from <span className="gh-inline-url">github.com/camilolaiton</span> - pipelines, models,
+            and one-off experiments. <em>Just <span className="gh-title-accent">open-sourced contributions,</span> <u>no private repos included.</u></em>
           </p>
         </div>
 
-        <div className="github-calendar-wrapper">
-          {state.status === 'ok' && (
-            <GitHubCalendar
-              username={GITHUB_USERNAME}
-              data={state.data}
-              theme={calendarTheme}
-              colorScheme={isDark ? 'dark' : 'light'}
-              blockSize={14}
-              blockMargin={4}
-              fontSize={14}
-            />
-          )}
-        </div>
+        <div className="gh-card">
+          {/* Card header */}
+          <div className="gh-card-header">
+            <span className="gh-card-label">Live contributions</span>
+            <a
+              href={`https://github.com/${GITHUB_USERNAME}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gh-profile-link"
+            >
+              View profile ↗
+            </a>
+          </div>
 
-        <div className="github-cta">
-          <a
-            href={`https://github.com/${GITHUB_USERNAME}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="github-cta__btn"
-          >
-            View GitHub Profile →
-          </a>
+          {/* Calendar */}
+          <div className="gh-calendar-wrapper">
+            {state.status === 'ok' && (
+              <GitHubCalendar
+                username={GITHUB_USERNAME}
+                data={state.data}
+                theme={calendarTheme}
+                colorScheme={isDark ? 'dark' : 'light'}
+                blockSize={13}
+                blockMargin={4}
+                fontSize={13}
+              />
+            )}
+            {state.status === 'loading' && (
+              <div className="gh-skeleton" />
+            )}
+          </div>
+
+          {/* Stats row */}
+          {stats && (
+            <div className="gh-stats">
+              <div className="gh-stat">
+                <span className="gh-stat-value">{stats.total.toLocaleString()}</span>
+                <span className="gh-stat-label">Contributions</span>
+              </div>
+              <div className="gh-stat">
+                <span className="gh-stat-value">{stats.active}</span>
+                <span className="gh-stat-label">Active days</span>
+              </div>
+              <div className="gh-stat">
+                <span className="gh-stat-value">{stats.streak}</span>
+                <span className="gh-stat-label">Longest streak</span>
+              </div>
+              <div className="gh-stat">
+                <span className="gh-stat-value">{stats.busiest.count}</span>
+                <span className="gh-stat-label">Busiest day</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </motion.section>
