@@ -1,108 +1,120 @@
-import React, { Component } from 'react';
-import {
-    VerticalTimeline,
-    VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
-import '../css/Experience.css';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { Icon } from '@iconify/react';
-import Badge from "react-bootstrap/Badge";
+import '../css/Experience.css';
 
-class WorkExperience extends Component {
+const WorkExperience = ({ workInfo }) => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
-    render() {
-        let workItems = null;
+  if (!workInfo || workInfo.length === 0) return null;
 
-        if (this.props.workInfo) {
-            workItems = this.props.workInfo.map(function(item, i) {
+  const toWord = (value) => {
+    const words = {
+      0: 'Zero',
+      1: 'One',
+      2: 'Two',
+      3: 'Three',
+      4: 'Four',
+      5: 'Five',
+      6: 'Six',
+      7: 'Seven',
+      8: 'Eight',
+      9: 'Nine',
+      10: 'Ten',
+    };
+    return words[value] || `${value}`;
+  };
 
-                var technologies = item.technologies.map(function(technology, iTech) {
-                    return (
-                        <Badge pill className="main-badge mr-2 mb-2" key={iTech} bg="secondary">
-                            {technology.name} <Icon icon={technology.class} height={15} color={technology.color} />
-                        </Badge>
-                    );
-                });
+  const parseYear = (value) => {
+    const match = String(value || '').match(/\d{4}/);
+    return match ? Number(match[0]) : null;
+  };
 
-                var descriptions = item.english.description.map(function(desc, iDes) {
-                    return (
-                        <li key={iDes} style={{ paddingLeft: '4px' }}>
-                            {desc}
-                        </li>
-                    );
-                });
+  const startYears = workInfo.map(item => parseYear(item.startDate)).filter(Boolean);
+  const endYears = workInfo.map(item => parseYear(item.endDate)).filter(Boolean);
+  const firstYear = startYears.length > 0 ? Math.min(...startYears) : null;
+  const lastYear = endYears.length > 0 ? Math.max(...endYears) : firstYear;
+  const hasCurrentRole = workInfo.some(item => /present|current/i.test(String(item.endDate || '')));
 
-                return (
-                    <VerticalTimelineElement
-                        className="vertical-timeline-element--work"
-                        contentStyle={{
-                            background: 'var(--color-surface)',
-                            color: 'var(--color-text-primary)',
-                            borderRadius: '12px',
-                            border: '1px solid var(--color-surface-alt)',
-                        }}
-                        contentArrowStyle={{ borderRight: '7px solid var(--color-surface)' }}
-                        date={item.startDate + " – " + item.endDate}
-                        dateClassName="dateTimeElement"
-                        iconStyle={{
-                            background: 'var(--color-primary)',
-                            color: '#fff',
-                            boxShadow: '0 0 0 4px var(--color-background), inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05)',
-                        }}
-                        icon={<Icon icon={item.technologies[0].class} />}
-                        visible={false}
-                        key={i}
-                    >
-                        <h3 className="vertical-timeline-element-title workItemTitle">
-                            <Badge pill className="main-badge mr-2 mb-2" bg="secondary">
-                                {item.english.title}
-                            </Badge>
-                        </h3>
-                        <hr className="itemHr" />
+  const roleCount = workInfo.length;
+  const roleLabel = toWord(roleCount);
+  const rangeLabel = firstYear ? `${firstYear} - ${hasCurrentRole ? 'present' : (lastYear || firstYear)}` : 'selected timeline';
 
-                        <h4 className="vertical-timeline-element-subtitle itemSubtitle">
-                            Organization
-                            <span style={{ paddingLeft: '10px', fontWeight: 400 }}>{item.organization}</span>
-                        </h4>
+  return (
+    <section className="work-experience" id="work-experience" ref={ref}>
+      <div className="container">
+        <motion.div
+          className="work-experience__header"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="work-kicker-row">
+            <span className="sec-num">§04</span>
+            <span className="work-kicker-line" aria-hidden="true" />
+            <span className="work-kicker-label">Work Experience</span>
+          </div>
+          <h1 className="work-experience__title">
+            <span className="work-title-accent">{roleLabel} roles</span>, {rangeLabel}.
+          </h1>
+        </motion.div>
 
-                        <h4 className="vertical-timeline-element-subtitle itemSubtitle">
-                            Location
-                            <span style={{ paddingLeft: '10px', fontWeight: 400 }}>{item.location}</span>
-                        </h4>
+        <div className="exp-list">
+          {workInfo.map((item, i) => {
+            const title = item.english?.title || '';
+            const descriptions = item.english?.description || [];
+            const techs = (item.technologies || []).filter(t => t.name || t.class);
+            const dateStr = `${item.startDate} – ${item.endDate}`;
+            const startYear = (item.startDate || '').split('/').pop();
 
-                        <h4 className="vertical-timeline-element-subtitle itemSubtitle">
-                            Description
-                            <ul style={{ marginTop: '6px', paddingLeft: '20px' }}>
-                                {descriptions}
-                            </ul>
-                        </h4>
-
-                        <hr className="itemHr" />
-
-                        <div className="technologyTimeElement">
-                            {technologies}
-                        </div>
-                    </VerticalTimelineElement>
-                );
-            });
-        }
-
-        return (
-            <section className="work-experience" id="work-experience">
-                <div className="container">
-                    <div className="work-experience__header">
-                        <span className="section-eyebrow">Experience</span>
-                        <h1 className="work-experience__title">Work Experience</h1>
-                    </div>
-                    <div className="col-md-8 mx-auto">
-                        <VerticalTimeline animate={true}>
-                            {workItems}
-                        </VerticalTimeline>
-                    </div>
+            return (
+              <motion.div
+                key={i}
+                className="exp-row"
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, delay: i * 0.07 }}
+              >
+                {/* Date column */}
+                <div className="exp-date">
+                  <span className="exp-date-year">{startYear}</span>
+                  <span className="exp-date-range">{dateStr}</span>
                 </div>
-            </section>
-        );
-    }
-}
+
+                {/* Body column */}
+                <div className="exp-body">
+                  <h3 className="exp-title">{title}</h3>
+                  <p className="exp-org">{item.organization}</p>
+                  <ul className="exp-bullets">
+                    {descriptions.slice(0, 4).map((desc, j) => (
+                      <li key={j}>{desc}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Side column */}
+                <div className="exp-side">
+                  <span className="exp-location">
+                    <Icon icon="hugeicons:location-01" height={12} />
+                    {item.location}
+                  </span>
+                  <div className="exp-techs">
+                    {techs.slice(0, 6).map((tech, j) => (
+                      <span key={j} className="tag">
+                        {tech.name || ''}
+                        {tech.class && <Icon icon={tech.class} height={12} />}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default WorkExperience;

@@ -13,151 +13,176 @@ const Projects = () => {
     const [projectsData, setProjectsData] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedProject, setSelectedProject] = useState(null);
-    
-    const [ref, inView] = useInView({
-        triggerOnce: true,
-        threshold: 0.1
-    });
+
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     useEffect(() => {
         fetch(`${process.env.PUBLIC_URL}/projects.json`)
-            .then(response => response.json())
+            .then(r => r.json())
             .then(data => setProjectsData(data))
-            .catch(error => console.error('Error loading projects:', error));
+            .catch(err => console.error('Error loading projects:', err));
     }, []);
 
     if (!projectsData) {
-        return <div className="projects-loading">Loading projects...</div>;
+        return <div className="projects-loading">Loading projects…</div>;
     }
 
+    const featuredProjects = projectsData.featured_projects || [];
     const categories = ['all', ...Object.keys(projectsData.project_categories)];
-    const filteredProjects = selectedCategory === 'all' 
-        ? projectsData.featured_projects
-        : projectsData.featured_projects.filter(project => {
-            // Handle both single category (string) and multiple categories (array)
-            const projectCategories = Array.isArray(project.category) 
-                ? project.category 
-                : [project.category];
-            return projectCategories.includes(selectedCategory);
+    const filteredProjects = selectedCategory === 'all'
+        ? featuredProjects
+        : featuredProjects.filter(project => {
+            const cats = Array.isArray(project.category) ? project.category : [project.category];
+            return cats.includes(selectedCategory);
         });
+
+    const numberWords = {
+        0: 'Zero',
+        1: 'One',
+        2: 'Two',
+        3: 'Three',
+        4: 'Four',
+        5: 'Five',
+        6: 'Six',
+        7: 'Seven',
+        8: 'Eight',
+        9: 'Nine',
+        10: 'Ten',
+    };
+
+    const parseYear = value => {
+        const match = String(value || '').match(/\d{4}/);
+        return match ? Number(match[0]) : null;
+    };
+
+    const startYears = featuredProjects
+        .map(project => parseYear(project.start_date))
+        .filter(Boolean);
+    const endYears = featuredProjects
+        .map(project => parseYear(project.end_date))
+        .filter(Boolean);
+
+    const firstYear = startYears.length > 0 ? Math.min(...startYears) : null;
+    const lastYear = endYears.length > 0 ? Math.max(...endYears) : firstYear;
+    const hasOngoingProject = featuredProjects.some(project => (
+        project.status === 'in-progress'
+        || /to be determined|present|ongoing/i.test(String(project.end_date || ''))
+    ));
+
+    const featuredCount = featuredProjects.length;
+    const featuredCountLabel = numberWords[featuredCount] || `${featuredCount}`;
+    const headlineCount = `${featuredCountLabel} project${featuredCount === 1 ? '' : 's'},`;
+    const headlineRange = firstYear
+        ? `${firstYear} — ${hasOngoingProject ? 'present' : (lastYear || firstYear)}`
+        : 'selected work';
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                duration: 0.6,
-                staggerChildren: 0.1
-            }
-        }
+        visible: { opacity: 1, transition: { duration: 0.6, staggerChildren: 0.1 } },
     };
-
     const itemVariants = {
         hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" }
-        }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    };
+
+    const getImageSrc = (imageUrl) => {
+        if (!imageUrl) return '';
+        if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) return imageUrl;
+        return `${process.env.PUBLIC_URL}/${imageUrl}`;
     };
 
     const ProjectCard = ({ project }) => {
-        // Handle both single category (string) and multiple categories (array)
-        const projectCategories = Array.isArray(project.category) 
-            ? project.category 
-            : [project.category];
-        
+        const projectCategories = Array.isArray(project.category) ? project.category : [project.category];
         const featuredImage = project.images.find(img => img.is_featured) || project.images[0];
-
-        // Helper function to determine if URL is external
-        const getImageSrc = (imageUrl) => {
-            if (!imageUrl) return '';
-            // Check if it's an external URL (starts with http:// or https://)
-            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                return imageUrl;
-            }
-            // Otherwise, treat as local path
-            return `${process.env.PUBLIC_URL}/${imageUrl}`;
-        };
+        const hasLinks = project.paper_url || project.github_url || project.demo_url;
 
         return (
             <motion.div
                 className="project-card"
                 variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 onClick={() => setSelectedProject(project)}
             >
+                {/* Image area */}
                 {featuredImage && (
                     <div className="project-image">
-                        <img 
+                        <img
                             src={getImageSrc(featuredImage.url)}
                             alt={featuredImage.title}
                             loading="lazy"
                         />
-                        <div className="project-overlay">
-                            <Icon icon="hugeicons:view" height={24} />
-                            <span>View Details</span>
-                        </div>
-                    </div>
-                )}
-                
-                <div className="project-content">
-                    <div className="project-header">
-                        <div className="project-categories">
+                        {/* Category chips float on the image */}
+                        <div className="project-image-cats">
                             {projectCategories.map(cat => {
-                                const categoryData = projectsData.project_categories[cat];
-                                return categoryData ? (
-                                    <div key={cat} className="project-category" style={{ color: categoryData.color }}>
-                                        <Icon icon={categoryData.icon} height={16} />
-                                        {categoryData.name}
-                                    </div>
+                                const cat_d = projectsData.project_categories[cat];
+                                return cat_d ? (
+                                    <span key={cat} className="project-cat-chip" style={{ '--cat-color': cat_d.color }}>
+                                        <Icon icon={cat_d.icon} height={11} />
+                                        {cat_d.name}
+                                    </span>
                                 ) : null;
                             })}
                         </div>
-                        <div className="project-status">
-                            <span className={`status-badge ${project.status}`}>
-                                {project.status}
+                        {/* Hover overlay */}
+                        <div className="project-overlay">
+                            <span className="project-overlay-hint">
+                                <Icon icon="hugeicons:expand-01" height={18} />
+                                View details
                             </span>
                         </div>
                     </div>
-                    
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.short_description}</p>
-                    
+                )}
+
+                {/* Content */}
+                <div className="project-content">
+                    <div className="project-content-top">
+                        <div className="project-title-row">
+                            <h3 className="project-title">{project.title}</h3>
+                            <span className={`status-badge ${project.status}`}>{project.status}</span>
+                        </div>
+                        <p className="project-description">{project.short_description}</p>
+                    </div>
+
+                    {/* Tech icons */}
                     <div className="project-technologies">
-                        {project.technologies.slice(0, 4).map(tech => {
+                        {project.technologies.slice(0, 5).map(tech => {
                             const techData = projectsData.technology_stack[tech];
                             return techData ? (
                                 <div key={tech} className="tech-badge" title={techData.name}>
-                                    <Icon icon={techData.icon} color={techData.color} height={20} />
+                                    <Icon icon={techData.icon} color={techData.color} height={18} />
                                 </div>
                             ) : null;
                         })}
-                        {project.technologies.length > 4 && (
-                            <span className="tech-more">+{project.technologies.length - 4}</span>
+                        {project.technologies.length > 5 && (
+                            <span className="tech-more">+{project.technologies.length - 5}</span>
                         )}
                     </div>
-                    
-                    <div className="project-links">
-                        {project.paper_url && (
-                            <a href={project.paper_url} target="_blank" rel="noopener noreferrer" className="project-link">
-                                <Icon icon="hugeicons:file-02" height={16} />
-                                Paper
-                            </a>
-                        )}
-                        {project.github_url && (
-                            <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="project-link">
-                                <Icon icon="akar-icons:github-fill" height={16} />
-                                Code
-                            </a>
-                        )}
-                        {project.demo_url && (
-                            <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="project-link">
-                                <Icon icon="hugeicons:external-link" height={16} />
-                                Demo
-                            </a>
-                        )}
-                    </div>
+
+                    {/* Footer: links */}
+                    {hasLinks && (
+                        <div className="project-card-footer">
+                            <div className="project-links" onClick={e => e.stopPropagation()}>
+                                {project.paper_url && (
+                                    <a href={project.paper_url} target="_blank" rel="noopener noreferrer" className="project-link">
+                                        <Icon icon="hugeicons:file-02" height={13} />
+                                        Paper
+                                    </a>
+                                )}
+                                {project.github_url && (
+                                    <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="project-link">
+                                        <Icon icon="akar-icons:github-fill" height={13} />
+                                        Code
+                                    </a>
+                                )}
+                                {project.demo_url && (
+                                    <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="project-link">
+                                        <Icon icon="hugeicons:external-link" height={13} />
+                                        Demo
+                                    </a>
+                                )}
+                            </div>
+                            <span className="project-expand-hint">Details →</span>
+                        </div>
+                    )}
                 </div>
             </motion.div>
         );
@@ -166,22 +191,7 @@ const Projects = () => {
     const ProjectModal = ({ project, onClose }) => {
         if (!project) return null;
 
-        // Handle both single category (string) and multiple categories (array)
-        const projectCategories = Array.isArray(project.category) 
-            ? project.category 
-            : [project.category];
-
-        // Helper function to determine if URL is external
-        const getImageSrc = (imageUrl) => {
-            if (!imageUrl) return '';
-            // Check if it's an external URL (starts with http:// or https://)
-
-            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                return imageUrl;
-            }
-            // Otherwise, treat as local path
-            return `${process.env.PUBLIC_URL}/${imageUrl}`;
-        };
+        const projectCategories = Array.isArray(project.category) ? project.category : [project.category];
 
         return (
             <motion.div
@@ -193,23 +203,24 @@ const Projects = () => {
             >
                 <motion.div
                     className="project-modal"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
+                    initial={{ scale: 0.92, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.92, opacity: 0 }}
+                    transition={{ type: 'spring', damping: 28, stiffness: 300 }}
                     onClick={e => e.stopPropagation()}
                 >
-                    <button className="modal-close" onClick={onClose}>
-                        <Icon icon="hugeicons:cancel-01" height={24} />
+                    <button className="modal-close" onClick={onClose} aria-label="Close">
+                        <Icon icon="hugeicons:cancel-01" height={20} />
                     </button>
-                    
+
                     <div className="modal-header">
                         <div className="project-categories">
                             {projectCategories.map(cat => {
-                                const categoryData = projectsData.project_categories[cat];
-                                return categoryData ? (
-                                    <div key={cat} className="project-category" style={{ color: categoryData.color }}>
-                                        <Icon icon={categoryData.icon} height={20} />
-                                        {categoryData.name}
+                                const cat_d = projectsData.project_categories[cat];
+                                return cat_d ? (
+                                    <div key={cat} className="project-category" style={{ color: cat_d.color }}>
+                                        <Icon icon={cat_d.icon} height={16} />
+                                        {cat_d.name}
                                     </div>
                                 ) : null;
                             })}
@@ -217,8 +228,6 @@ const Projects = () => {
                         <h2>{project.title}</h2>
                         <p>{project.short_description}</p>
                     </div>
-                    
-                    {/* {console.log(project)} */}
 
                     {project.images.length > 0 && (
                         <div className="modal-gallery">
@@ -232,7 +241,7 @@ const Projects = () => {
                                 {project.images.map((image, index) => (
                                     <SwiperSlide key={index}>
                                         <div className="gallery-slide">
-                                            <img 
+                                            <img
                                                 src={getImageSrc(image.url)}
                                                 alt={image.title}
                                             />
@@ -275,19 +284,19 @@ const Projects = () => {
                         <div className="project-actions">
                             {project.paper_url && (
                                 <a href={project.paper_url} target="_blank" rel="noopener noreferrer" className="action-button primary">
-                                    <Icon icon="hugeicons:file-02" height={20} />
+                                    <Icon icon="hugeicons:file-02" height={18} />
                                     Read Paper
                                 </a>
                             )}
                             {project.github_url && (
                                 <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="action-button secondary">
-                                    <Icon icon="akar-icons:github-fill" height={20} />
+                                    <Icon icon="akar-icons:github-fill" height={18} />
                                     View Code
                                 </a>
                             )}
                             {project.demo_url && (
                                 <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="action-button secondary">
-                                    <Icon icon="hugeicons:external-link" height={20} />
+                                    <Icon icon="hugeicons:external-link" height={18} />
                                     Live Demo
                                 </a>
                             )}
@@ -305,12 +314,24 @@ const Projects = () => {
             ref={ref}
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? "visible" : "hidden"}
+            animate={inView ? 'visible' : 'hidden'}
         >
             <div className="container">
                 <motion.div className="projects-header-block" variants={itemVariants}>
-                    <span className="section-eyebrow">Work</span>
-                    <h1>Featured Projects</h1>
+                    <div className="projects-kicker-row">
+                        <span className="sec-num">§02</span>
+                        <span className="projects-kicker-line" aria-hidden="true" />
+                        <span className="projects-kicker-label">Featured Projects</span>
+                    </div>
+                    <h1 className="projects-hero-title">
+                        <span className="projects-hero-count">{headlineCount}</span>{' '}
+                        <span className="projects-hero-range">{headlineRange}.</span>
+                    </h1>
+                    <p className="projects-hero-copy">
+                        Each entry is an end-to-end build: research question, architecture, training,
+                        and the production system that runs it. Figures are direct outputs of the pipelines.
+                        Some are still work in progress.
+                    </p>
                 </motion.div>
 
                 <motion.div className="category-filters" variants={itemVariants}>
@@ -321,13 +342,10 @@ const Projects = () => {
                             onClick={() => setSelectedCategory(category)}
                         >
                             {category === 'all' ? (
-                                <>
-                                    <Icon icon="hugeicons:grid-view" height={16} />
-                                    All Projects
-                                </>
+                                <><Icon icon="hugeicons:grid-view" height={14} />All</>
                             ) : (
                                 <>
-                                    <Icon icon={projectsData.project_categories[category].icon} height={16} />
+                                    <Icon icon={projectsData.project_categories[category].icon} height={14} />
                                     {projectsData.project_categories[category].name}
                                 </>
                             )}
@@ -343,9 +361,9 @@ const Projects = () => {
             </div>
 
             {selectedProject && (
-                <ProjectModal 
-                    project={selectedProject} 
-                    onClose={() => setSelectedProject(null)} 
+                <ProjectModal
+                    project={selectedProject}
+                    onClose={() => setSelectedProject(null)}
                 />
             )}
         </motion.section>

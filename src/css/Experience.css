@@ -1,180 +1,208 @@
-/* ─── Work Experience Section ────────────────────────────── */
 .work-experience {
-  background: var(--color-background);
-  padding: var(--spacing-4xl) 0;
-  position: relative;
+  background: var(--paper-2);
+  padding: var(--s-9) 0;
+  border-top: 1px solid var(--rule);
 }
 
 .work-experience__header {
-  text-align: center;
-  margin-bottom: var(--spacing-3xl);
-  position: relative;
-  z-index: 2;
+  margin-bottom: var(--s-7);
+  max-width: 980px;
 }
 
 .work-experience__title {
-  color: var(--color-text-primary);
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: -0.02em;
-  display: inline-block;
+  font-family: var(--f-serif);
+  font-size: clamp(2.1rem, 5vw, 5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.work-kicker-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-bottom: var(--s-5);
+}
+
+.work-kicker-row .sec-num {
+  margin: 0;
+}
+
+.work-kicker-line {
+  flex: 0 0 min(320px, 30vw);
+  height: 1px;
+  background: var(--rule);
+}
+
+.work-kicker-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.work-title-accent {
+  color: var(--indigo);
+  font-style: italic;
+}
+
+/* Experience list */
+.exp-list {
+  border-bottom: 1px solid var(--rule);
+}
+
+.exp-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 220px;
+  gap: var(--s-6);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding: var(--s-6) 0;
+}
+
+/* Date column */
+.exp-date {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  padding-top: 4px;
+}
+
+.exp-date-year {
+  font-family: var(--f-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--amber);
+  line-height: 1;
+}
+
+.exp-date-range {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+/* Body column */
+.exp-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.exp-title {
+  font-family: var(--f-serif);
+  font-size: var(--t-xl);
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.exp-org {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: var(--t-md);
+  color: var(--indigo);
+  margin: 0;
+}
+
+.exp-bullets {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-2) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.exp-bullets li {
+  font-family: var(--f-sans);
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+  padding-left: var(--s-4);
   position: relative;
 }
 
-.work-experience__title::after {
-  content: '';
+.exp-bullets li::before {
+  content: '·';
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: var(--color-primary);
-  border-radius: var(--border-radius-sm);
+  left: 0;
+  color: var(--amber);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
 }
 
-/* ─── Timeline item styles ─── */
-.itemTitle {
-    font-size: var(--font-size-lg);
-    text-align: justify;
-    color: var(--color-text-primary);
+/* Side column */
+.exp-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding-top: 4px;
 }
 
-.workItemTitle {
-    font-size: var(--font-size-xl);
-    text-align: justify;
-    color: var(--color-text-primary);
+.exp-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
-.itemSubtitle {
-    font-size: var(--font-size-base);
-    text-align: justify;
-    margin-top: var(--spacing-sm);
-    color: var(--color-text-secondary);
+.exp-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
 }
 
-.dateTimeElement {
-    color: var(--color-text-on-dark);
-    font-weight: var(--font-weight-semibold);
+/* Responsive */
+@media (max-width: 900px) {
+  .work-experience__header {
+    margin-bottom: var(--s-6);
+  }
+  .work-kicker-row {
+    gap: var(--s-3);
+    margin-bottom: var(--s-4);
+  }
+  .work-kicker-line {
+    flex-basis: 28vw;
+  }
+  .work-kicker-label {
+    letter-spacing: 0.14em;
+  }
+  .work-experience__title {
+    font-size: clamp(1.8rem, 10vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+  .exp-row {
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .exp-side {
+    grid-column: 2;
+  }
 }
 
-.tutorTimeElement {
-    color: var(--color-primary-light);
-    font-weight: var(--font-weight-bold);
-    text-decoration: none;
-    transition: all var(--transition-normal);
-}
-
-.tutorTimeElement:hover {
-    color: var(--color-primary);
-    text-decoration: underline;
-}
-
-.itemHr {
-    margin-top: 0rem;
-    margin-bottom: 0rem;
-    margin-left: 0%;
-    margin-right: 0%;
-    border: 0;
-    border-top: 1px solid var(--color-surface-alt);
-    opacity: 0.5;
-}
-
-.technologyTimeElement {
-    margin-top: 3px;
-    margin-bottom: -20px;
-}
-
-.sliderimg{
-    object-fit: cover;
-    border-radius: var(--border-radius-lg);
-    border: 2px solid var(--color-surface-alt);
-    margin-top: var(--spacing-md);
-    width: 100%;
-    height: auto;
-    transition: all var(--transition-normal);
-}
-
-.sliderimg:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-lg);
-}
-
-.sliderimgzoomed {
-    object-fit: cover;
-    border-radius: var(--border-radius-lg);
-    border: 2px solid var(--color-surface-alt);
-    width: 100%;
-    height: auto;
-}
-
-.zoom {
-    transition: transform .2s;
-    margin: 0 auto;
-}
-
-.zoom:hover {
-    transform: scale(1.8);
-}
-
-.sliderimgDesc {
-    padding-left: var(--spacing-lg);
-    font-weight: var(--font-weight-light);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    font-style: italic;
-}
-
-/* Vertical Timeline Dark Theme Overrides */
-.vertical-timeline::before {
-    background: var(--color-surface-alt) !important;
-}
-
-.vertical-timeline-element-content {
-    box-shadow: var(--shadow-xl) !important;
-}
-
-.vertical-timeline-element-content p {
-    color: var(--color-text-secondary);
-    margin: 0;
-}
-
-.vertical-timeline-element--work .vertical-timeline-element-content {
-    background: var(--color-surface);
-}
-
-.inline-block {
-    display: inline-block;
-}
-
-/* Modal styling for dark theme */
-.modal-content {
-    background-color: var(--color-surface);
-    color: var(--color-text-primary);
-    border: 1px solid var(--color-surface-alt);
-}
-
-.modal-header {
-    border-bottom: 1px solid var(--color-surface-alt);
-}
-
-.modal-title {
-    color: var(--color-text-primary);
-}
-
-.modal-footer {
-    border-top: 1px solid var(--color-surface-alt);
-}
-
-.btn-secondary {
-    background-color: var(--color-surface-alt);
-    border-color: var(--color-surface-alt);
-    color: var(--color-text-primary);
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-text-on-dark);
+@media (max-width: 640px) {
+  .exp-row {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+  }
+  .exp-date {
+    flex-direction: row;
+    gap: var(--s-4);
+    align-items: center;
+  }
+  .exp-side {
+    grid-column: 1;
+  }
 }
