@@ -11,7 +11,7 @@ const MetricTile = ({ value, label, highlight }) => (
     <span className={`metric-value${highlight ? ' metric-value--highlight' : ''}`}>
       {value}
     </span>
-    <span className="metric-label">{label}</span>
+    <span className="metric-label"><strong>{label}</strong></span>
   </div>
 );
 
@@ -26,6 +26,7 @@ const fadeUp = {
 
 const Header = ({ name, socialInfo, metrics }) => {
   const displayName = name || 'Camilo Laiton';
+  const currentYear = new Date().getFullYear();
   const resumeFileName = 'DL Camilo Laiton - Resume.pdf';
   const resumeHref = `${process.env.PUBLIC_URL}/${encodeURIComponent(resumeFileName)}`;
   const emailContact = socialInfo
@@ -82,7 +83,7 @@ const Header = ({ name, socialInfo, metrics }) => {
           >
             <span className="hero-status-dot" aria-hidden="true" />
             <span className="hero-status-text">
-              Available · Seattle · 2026
+              {`Available · Seattle · ${currentYear}`}
             </span>
           </motion.div>
 

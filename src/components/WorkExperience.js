@@ -31,6 +31,35 @@ const WorkExperience = ({ workInfo }) => {
     return match ? Number(match[0]) : null;
   };
 
+  const emphasizeQuantitativeText = (text) => {
+    const value = String(text || '');
+    const pattern = /(\$\d+(?:\.\d+)?\+?|~?\$?\d+(?:\.\d+)?%|\b\d+(?:\.\d+)?x\b|\b\d+(?:\.\d+)?\s?(?:PB|TB|GB|um|h)\b|\bcost\b|\bdice\b|\bncc\b|\berror\b|\bspeedup\b|\bjacobians\b)/gi;
+    const matches = [...value.matchAll(pattern)];
+
+    if (matches.length === 0) return value;
+
+    const parts = [];
+    let cursor = 0;
+
+    matches.forEach((match, idx) => {
+      const start = match.index ?? 0;
+      const end = start + match[0].length;
+
+      if (start > cursor) {
+        parts.push(value.slice(cursor, start));
+      }
+
+      parts.push(<strong key={`q-${idx}-${start}`}>{value.slice(start, end)}</strong>);
+      cursor = end;
+    });
+
+    if (cursor < value.length) {
+      parts.push(value.slice(cursor));
+    }
+
+    return parts;
+  };
+
   const startYears = workInfo.map(item => parseYear(item.startDate)).filter(Boolean);
   const endYears = workInfo.map(item => parseYear(item.endDate)).filter(Boolean);
   const firstYear = startYears.length > 0 ? Math.min(...startYears) : null;
@@ -55,9 +84,9 @@ const WorkExperience = ({ workInfo }) => {
             <span className="work-kicker-line" aria-hidden="true" />
             <span className="work-kicker-label">Work Experience</span>
           </div>
-          <h1 className="work-experience__title">
+          <h2 className="work-experience__title">
             <span className="work-title-accent">{roleLabel} roles</span>, {rangeLabel}.
-          </h1>
+          </h2>
         </motion.div>
 
         <div className="exp-list">
@@ -88,7 +117,7 @@ const WorkExperience = ({ workInfo }) => {
                   <p className="exp-org">{item.organization}</p>
                   <ul className="exp-bullets">
                     {descriptions.slice(0, 4).map((desc, j) => (
-                      <li key={j}>{desc}</li>
+                      <li key={j}>{emphasizeQuantitativeText(desc)}</li>
                     ))}
                   </ul>
                 </div>

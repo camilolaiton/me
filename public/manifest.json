@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Camilo Laiton",
+  "name": "Camilo Laiton — Machine Learning & Computer Vision Engineer",
+  "description": "Deep learning and cloud-scale microscopy image processing: registration, segmentation, and protein prediction over petabyte-scale imaging data.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0c0c0e",
+  "background_color": "#0c0c0e"
 }

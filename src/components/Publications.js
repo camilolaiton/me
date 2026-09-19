@@ -14,11 +14,11 @@ const extractVenue = (state) => {
   if (!state) return '';
   const normalized = String(state).trim();
   // "Published - Journal of Imaging | DOI: ..." -> "Journal of Imaging"
-  const dashMatch = normalized.match(/^(Published|In Review|Under Review|Pending publication|Preparing for publication)\s*[-–]\s*(.+)$/i);
+  const dashMatch = normalized.match(/^(Published|In Review|Under Review|Pending publication|Preparing for publication|Accepted in principle)\s*[-–]\s*(.+)$/i);
   if (dashMatch) {
     return dashMatch[2].split('|')[0].trim();
   }
-  if (/pending|prepar|in review|under review/i.test(normalized)) {
+  if (/pending|prepar|in review|under review|accepted in principle/i.test(normalized)) {
     return '';
   }
   return normalized.split('|')[0].trim();
@@ -26,7 +26,7 @@ const extractVenue = (state) => {
 
 const extractStatus = (state) => {
   if (!state) return 'published';
-  if (/in review|under review|pending|prepar/i.test(state)) return 'preparation';
+  if (/in review|under review|pending|prepar|accepted in principle/i.test(state)) return 'preparation';
   return 'published';
 };
 
@@ -75,20 +75,22 @@ const Publications = ({ researchInfo }) => {
   allPublications.sort((a, b) => (parseInt(b.year) || 0) - (parseInt(a.year) || 0));
 
   const hasValidLink = (url) => Boolean(url && url !== '#');
+  // Count by status only. A paper without a public link is still published —
+  // gating on the URL here made the headline disagree with the list below it.
   const publishedCount = allPublications.filter(pub => (
-    extractStatus(pub.state) === 'published' && hasValidLink(pub.url)
+    extractStatus(pub.state) === 'published'
   )).length;
   const preparationCount = allPublications.filter(pub => (
-    extractStatus(pub.state) === 'preparation' && hasValidLink(pub.url)
+    extractStatus(pub.state) === 'preparation'
   )).length;
 
   const accentLead = toWord(publishedCount);
-  const prepPhrase = preparationCount === 0
-    ? 'some others in preparation'
-    : preparationCount === 1
-      ? 'some others in preparation'
-      : `${toWord(preparationCount).toLowerCase()} in preparation`;
-  const headlineTail = `peer-reviewed paper${publishedCount === 1 ? '' : 's'}, ${prepPhrase}.`;
+  const prepPhrase = preparationCount === 1
+    ? 'one more in preparation'
+    : `${toWord(preparationCount).toLowerCase()} in preparation`;
+  const headlineTail = preparationCount === 0
+    ? `peer-reviewed paper${publishedCount === 1 ? '' : 's'}.`
+    : `peer-reviewed paper${publishedCount === 1 ? '' : 's'}, ${prepPhrase}.`;
 
   const allTopics = Array.from(new Set(
     allPublications.flatMap(pub => (Array.isArray(pub.topics) ? pub.topics : []))
@@ -103,7 +105,7 @@ const Publications = ({ researchInfo }) => {
     domains.push('microscopy');
   }
   if (normalizedTopics.some(topic => topic.includes('industry 4.0') || topic.includes('rail'))) {
-    domains.push('Industry 4.0');
+    domains.push('transportation systems');
   }
 
   const domainSummary = domains.length > 0
@@ -124,10 +126,10 @@ const Publications = ({ researchInfo }) => {
             <span className="publications-kicker-line" aria-hidden="true" />
             <span className="publications-kicker-label">Publications</span>
           </div>
-          <h1 className="publications-hero-title">
+          <h2 className="publications-hero-title">
             <span className="publications-hero-accent">{accentLead}</span>{' '}
             {headlineTail}
-          </h1>
+          </h2>
           <p className="publications-hero-copy">{domainSummary}</p>
         </motion.div>
 
@@ -147,7 +149,7 @@ const Publications = ({ researchInfo }) => {
                   <div className="pub-year">{pub.year}</div>
                   <div className="pub-body">
                     <h3 className="pub-title">
-                      {pub.url ? (
+                      {hasValidLink(pub.url) ? (
                         <a href={pub.url} target="_blank" rel="noreferrer" className="pub-title-link">
                           {pub.title}
                         </a>
@@ -164,7 +166,7 @@ const Publications = ({ researchInfo }) => {
                     </div>
                   </div>
                   <div className="pub-link-col">
-                    {pub.url && (
+                    {hasValidLink(pub.url) && (
                       <a
                         href={pub.url}
                         target="_blank"

@@ -9,9 +9,10 @@ const MEDIUM_FEED_URL =
 const MAX_POSTS = 3;
 
 const stripHtml = (html) => {
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  return div.textContent || div.innerText || '';
+  // DOMParser builds an inert document: unlike assigning to innerHTML, it will
+  // not run loaders such as <img onerror> from the third-party feed response.
+  const doc = new DOMParser().parseFromString(String(html || ''), 'text/html');
+  return doc.body.textContent || '';
 };
 
 const formatDate = (dateStr) => {
@@ -33,47 +34,28 @@ const SkeletonCard = () => (
 const BlogPosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   useEffect(() => {
+    let cancelled = false;
+
     fetch(MEDIUM_FEED_URL)
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === 'ok') {
+        if (cancelled) return;
+        if (data.status === 'ok' && Array.isArray(data.items)) {
           setPosts(data.items.slice(0, MAX_POSTS));
-        } else {
-          setError(true);
         }
         setLoading(false);
       })
       .catch(() => {
-        setError(true);
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       });
+
+    return () => { cancelled = true; };
   }, []);
 
-  if (!loading && (error || posts.length === 0)) return null;
-
-  const toWord = (value) => {
-    const words = {
-      0: 'Zero',
-      1: 'One',
-      2: 'Two',
-      3: 'Three',
-      4: 'Four',
-      5: 'Five',
-      6: 'Six',
-      7: 'Seven',
-      8: 'Eight',
-      9: 'Nine',
-      10: 'Ten',
-    };
-    return words[value] || `${value}`;
-  };
-
-  const visiblePostCount = loading ? MAX_POSTS : posts.length;
-  const blogLead = toWord(visiblePostCount);
+  const hasPosts = posts.length > 0;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -110,7 +92,8 @@ const BlogPosts = () => {
         <motion.div className="blog-grid" variants={containerVariants}>
           {loading
             ? Array.from({ length: MAX_POSTS }).map((_, i) => <SkeletonCard key={i} />)
-            : posts.map((post, i) => (
+            : hasPosts
+              ? posts.map((post, i) => (
                 <motion.a
                   key={i}
                   href={post.link}
@@ -152,7 +135,17 @@ const BlogPosts = () => {
                     </div>
                   </div>
                 </motion.a>
-              ))}
+              ))
+              : (
+                <motion.div className="blog-card" variants={itemVariants}>
+                  <div className="blog-card__body">
+                    <h3 className="blog-card__title">Posts unavailable right now</h3>
+                    <p className="blog-card__excerpt">
+                      The Medium feed is temporarily unavailable. You can still read all posts directly on Medium.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
         </motion.div>
 
         <motion.div className="blog-cta" variants={itemVariants}>

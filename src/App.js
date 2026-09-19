@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -17,31 +16,45 @@ import Footer from './components/Footer';
 const App = () => {
   const [sharedData, setSharedData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState('dark');
+  // The inline script in index.html has already resolved the theme (stored
+  // preference → OS preference → dark) and written it to the body before paint.
+  const [theme, setTheme] = useState(
+    () => document.body.getAttribute('data-theme') || 'dark'
+  );
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     document.body.setAttribute('data-theme', newTheme);
-  };
-
-  const loadProfileData = async () => {
     try {
-      const response = await fetch(`${process.env.PUBLIC_URL}/personal_information.json`);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const data = await response.json();
-      setSharedData(data);
-      document.title = data.name || 'Camilo Laiton Portfolio';
-      setLoading(false);
-    } catch (error) {
-      console.error('Error loading profile data:', error);
-      setLoading(false);
+      localStorage.setItem('theme', newTheme);
+    } catch (e) {
+      // Storage can be blocked (private mode); the theme still applies for this visit.
     }
   };
 
   useEffect(() => {
+    let cancelled = false;
+
+    const loadProfileData = async () => {
+      try {
+        const response = await fetch(`${process.env.PUBLIC_URL}/personal_information.json`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        if (cancelled) return;
+        setSharedData(data);
+        document.title = data.name
+          ? `${data.name} — Portfolio`
+          : 'Camilo Laiton — Portfolio';
+      } catch (error) {
+        console.error('Error loading profile data:', error);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+
     loadProfileData();
-    document.body.setAttribute('data-theme', 'dark');
+    return () => { cancelled = true; };
   }, []);
 
   if (loading) {
