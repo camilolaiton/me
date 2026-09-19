@@ -28,3 +28,6 @@ config/secrets.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# Local code-intelligence index
+.codegraph/
+.venv/

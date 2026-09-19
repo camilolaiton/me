@@ -18,7 +18,7 @@ const Footer = ({ socialInfo, name }) => {
         <div className="footer-meta">
           <div className="footer-availability">
             <span className="footer-dot" aria-hidden="true" />
-            <span>Open to collaborations · Seattle, WA · 2026</span>
+            <span>{`Open to collaborations · Seattle, WA · ${year}`}</span>
           </div>
 
           {socialInfo && (

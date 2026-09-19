@@ -1,31 +1,13 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { useLang } from '../context/LangContext';
 import '../css/Navigation.css';
 
 const navItems = [
-  { id: 'recruiter-snapshot', label: 'Snapshot' },
   { id: 'projects',        label: 'Work' },
   { id: 'publications',    label: 'Publications' },
   { id: 'work-experience', label: 'Experience' },
   { id: 'about',           label: 'About' },
   { id: 'github-activity', label: 'Activity' },
 ];
-
-const LangToggle = () => {
-  const { lang, setLang } = useLang();
-  return (
-    <div className="lang-toggle" role="group" aria-label="Language">
-      <button
-        className={lang === 'en' ? 'active' : ''}
-        onClick={() => setLang('en')}
-      >EN</button>
-      <button
-        className={lang === 'es' ? 'active' : ''}
-        onClick={() => setLang('es')}
-      >ES</button>
-    </div>
-  );
-};
 
 const Navigation = ({ theme, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('');
@@ -104,7 +86,6 @@ const Navigation = ({ theme, toggleTheme }) => {
 
           {/* Right: controls */}
           <div className="nav-controls">
-            <LangToggle />
             <button
               className="theme-btn"
               onClick={toggleTheme}

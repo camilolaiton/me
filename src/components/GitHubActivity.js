@@ -42,8 +42,6 @@ const GitHubActivity = ({ isDark }) => {
 
   const stats = useMemo(() => computeStats(state.data), [state.data]);
 
-  if (state.status === 'error') return null;
-
   return (
     <motion.section
       className="github-activity"
@@ -98,6 +96,11 @@ const GitHubActivity = ({ isDark }) => {
             )}
             {state.status === 'loading' && (
               <div className="gh-skeleton" />
+            )}
+            {state.status === 'error' && (
+              <p className="gh-hero-copy">
+                Live contribution data is temporarily unavailable. You can still view activity directly on GitHub.
+              </p>
             )}
           </div>
 

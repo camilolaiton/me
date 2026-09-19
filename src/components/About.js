@@ -20,9 +20,9 @@ const About = () => {
             <span className="about-kicker-line" aria-hidden="true" />
             <span className="about-kicker-label">About</span>
           </div>
-          <h1 className="about-title">
-            <span className="about-title-accent">Computer vision</span> engineer, research to production.
-          </h1>
+          <h2 className="about-title">
+            <span className="about-title-accent">Machine learning and computer vision</span> engineer, research to production.
+          </h2>
         </motion.div>
 
         <motion.div
@@ -33,7 +33,7 @@ const About = () => {
         >
           <div className="about-text">
             <p>
-              Camilo Laiton is a Computer Vision Engineer with a Masters in Computer Science at the{' '}
+              Camilo Laiton is a machine learning and computer vision engineer with an M.Sc. in Computer Science from the{' '}
               <a href="https://medellin.unal.edu.co/" target="_blank" rel="noreferrer">
                 National University of Colombia — Medellín
               </a>.
@@ -52,8 +52,8 @@ const About = () => {
             </p>
 
             <p>
-              He has deep expertise in large-scale image processing, deep learning, and computer vision —
-              building systems that turn raw microscopy data into biological insight at petabyte scale.
+              He specializes in deep learning and cloud-scale image processing for microscopy,
+              building production systems that transform raw imaging data into biological insight.
             </p>
 
             <p>
@@ -61,9 +61,9 @@ const About = () => {
               <a href="https://alleninstitute.org/person/camilo-laiton/" target="_blank" rel="noreferrer">
                 Allen Institute
               </a>
-              , he leads scalable computer vision infrastructure for neuroscience: whole-brain cell
-              detection pipelines, atlas registration, mRNA identification, and foundational models for
-              lightsheet microscopy data.
+              , he has led and scaled whole-brain processing pipelines beyond 3 PB,
+              improving cost, speed, and registration accuracy while delivering open-source tools for
+              atlas registration, cell and mRNA analysis, and protein prediction in light-sheet microscopy.
             </p>
           </div>
 

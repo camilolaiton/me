@@ -48,9 +48,9 @@ const Honors = ({ honors, certificates, languages }) => {
             <span className="honors-kicker-line" aria-hidden="true" />
             <span className="honors-kicker-label">Achievements &amp; Languages</span>
           </div>
-          <h1 className="honors-hero-title">
+          <h2 className="honors-hero-title">
             <span className="honors-title-accent">{toWord(honorsCount)} highlights</span>, {toWord(languageCount).toLowerCase()} languages.
-          </h1>
+          </h2>
         </motion.div>
 
         <div className="honors-grid">

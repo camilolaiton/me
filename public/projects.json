@@ -23,10 +23,10 @@
       ],
       "highlights": [
         "Neural synapse localization",
-        "Completely data-driven approach",
+        "~14% lower validation loss than a traditional U-Net baseline",
         "Scalable prediction of proteins",
         "Bassoon, Shank3 and PSD95 proteins",
-        "Large-scale lightsheet data"
+        "Trained on large-scale lightsheet data"
       ]
     },
     {
@@ -60,12 +60,12 @@
         "Foundational 3D image encoder",
         "High-resolution feature extraction",
         "Downstream biological analysis capabilities",
-        "Multi-Resolution feature learning"
+        "Pretrained with ~3 PB of lightsheet data"
       ]
     },
     {
       "id": "smartspim-pipeline",
-      "title": "A Scalable, modular pipeline for automated processing and segmentation for whole-brain light microscopy data",
+      "title": "3D-MAESTRO: A scalable, modular, portable pipeline for automated processing of large-scale volumetric brain microscopy data",
       "category": ["research", "deep-learning"],
       "featured": true,
       "status": "completed",
@@ -75,7 +75,7 @@
       "technologies": ["pytorch", "python", "nextflow", "docker", "aws"],
       "github_url": "https://github.com/AllenNeuralDynamics/aind-smartspim-pipeline",
       "demo_url": "https://tinyurl.com/c2nhsrx3",
-      "paper_url": "https://academic.oup.com/mam/article/30/Supplement_1/ozae044.216/7719767?login=false",
+      "paper_url": "https://www.biorxiv.org/content/10.64898/2026.09.09.750494v1",
       "images": [
         {
           "url": "images/smartspim_pipeline/pipeline_overview.png", 
@@ -84,9 +84,15 @@
           "is_featured": true
         },
         {
-          "url": "https://tinyurl.com/39ffcyks",
-          "title": "Lightsheet Pipeline",
-          "description": "Steps for lightsheet image processing pipeline",
+          "url": "images/smartspim_pipeline/denoising.png",
+          "title": "Denoising and Stitching",
+          "description": "Image preprocessing steps in the lightsheet pipeline",
+          "is_featured": true
+        },
+        {
+          "url": "images/smartspim_pipeline/template_registration.png",
+          "title": "Template Creationg",
+          "description": "Template creation for the pipeline",
           "is_featured": true
         },
         {
@@ -97,10 +103,14 @@
         }
       ],
       "highlights": [
-        "Cloud image processing pipeline",
+        "Processed 3+ PB of SmartSPIM light-sheet data",
+        "Reduced per-brain processing cost from $150+ to ~$50 (~67% reduction)",
+        "Stitching median error reduced from 10.7 microns to 1.7 microns (~85% reduction)",
         "Cell detection using deep learning",
         "Identification of brain structures using the Allen V3 CCF Atlas.",
-        "Quantification of cells in different brain regions"
+        "Quantification of cells in different brain regions",
+        "Template creation reduced from 30 h to 5 h per template (~6x speedup)",
+        "Reduced mean edge image registration error to the Allen CCF v3 template from 53 um to 24 um (~55% reduction)"
       ]
     },
     {
@@ -144,9 +154,10 @@
       ],
       "highlights": [
         "Large-scale cellpose",
-        "Fast cell segmentation",
+        "46 h to 4 h on a 200 GB dataset (~12x speedup)",
         "Provides cell centroids and masks",
-        "Compatible with OMEZarr and cloud computing resources"
+        "Optimized gradient prediction and mask computation",
+        "Compatible with OME-Zarr and cloud computing resources"
       ]
     },
     {
@@ -172,7 +183,7 @@
       ],
       "highlights": [
         "Large-scale RNA detection",
-        "Fast RNA detection",
+        "TB-scale RNA spot detection on cloud infrastructure",
         "Provides RNA spot locations",
         "Compatible with OMEZarr and cloud computing resources"
       ]
@@ -192,18 +203,21 @@
       "paper_url": "https://www.mdpi.com/1424-8220/22/7/2559",
       "images": [
         {
-          "url": "images/master_thesis/axial.gif",
+          "url": "images/master_thesis/axial.mp4",
+          "poster": "images/master_thesis/axial-poster.jpg",
           "title": "Axial Plane Segmentation",
           "description": "Segmented brain MRI in the axial plane using the proposed architecture.",
           "is_featured": true
         },
         {
-          "url": "images/master_thesis/coronal.gif", 
+          "url": "images/master_thesis/coronal.mp4",
+          "poster": "images/master_thesis/coronal-poster.jpg", 
           "title": "Coronal Plane Segmentation",
           "description": "Segmented brain MRI in the coronal plane using the proposed architecture."
         },
         {
-          "url": "images/master_thesis/saggital.gif",
+          "url": "images/master_thesis/saggital.mp4",
+          "poster": "images/master_thesis/saggital-poster.jpg",
           "title": "Sagittal Plane Segmentation", 
           "description": "Segmented brain MRI in the sagittal plane using the proposed architecture."
         },
@@ -222,7 +236,7 @@
         "Published in Sensors Journal (Q1 - JCR)",
         "Novel 3D self-attention architecture",
         "37 brain structures segmentation",
-        "State-of-the-art performance"
+        "Peer-reviewed MRI benchmark evaluation"
       ]
     },
     {
@@ -413,6 +427,11 @@
     "cuda": {
       "name": "Cupy",
       "icon": "catppuccin:cuda",
+      "color": ""
+    },
+    "ants": {
+      "name": "ANTs",
+      "icon": "mdi:vector-polyline",
       "color": ""
     }
   }
