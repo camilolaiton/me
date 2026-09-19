@@ -5,17 +5,17 @@
   },
   "name": "Camilo Laiton",
   "metrics": [
-    { "value": "3+ PB",   "label": "Imaging data processed",  "highlight": true },
-    { "value": "3,500+", "label": "Whole brains processed",      "highlight": false },
-    { "value": "7+",     "label": "Years in production AI",   "highlight": false },
-    { "value": "5",      "label": "Peer-reviewed papers",     "highlight": false }
+    { "value": "3+ Petabytes",   "label": "Imaging data processed",  "highlight": true },
+    { "value": "4000+", "label": "Terabyte-scale datasets processed", "highlight": true },
+    { "value": "7+", "label": "Years of experience", "highlight": true },
+    { "value": "7",    "label": "Peer-reviewed papers", "highlight": true }
   ],
   "titles": [
-    "Machine Learning Developer",
+    "Machine Learning Engineer",
+    "Computer Vision Engineer",
     "Deep Learning Researcher",
-    "React Developer",
-    "Language Lover",
-    "Fifth Item"
+    "Cloud-Scale Bio-Imaging",
+    "Mentor and Open-source Builder"
   ],
   "speakLanguages": [
     {
@@ -31,7 +31,7 @@
     {
       "name": "French",
       "class": "emojione:flag-for-france",
-      "level": "Professional working proficiency - B2"
+      "level": "Upper-intermediate proficiency - B2"
     }
   ],
   "honors": [
@@ -56,7 +56,7 @@
       "year": 2020
     },
     {
-      "honor": "French Language Scholarship (level B2) granted by the Alliance Française and French Goverment.",
+      "honor": "French Language Scholarship (level B2) granted by the Alliance Française and French Government.",
       "year": 2020
     },
     {
@@ -64,7 +64,7 @@
       "year": 2019
     },
     {
-      "honor": "Facebook-Plazti Developers Scholarship.",
+      "honor": "Facebook-Platzi Developers Scholarship.",
       "year": 2019
     },
     {
@@ -140,8 +140,8 @@
   ],
   "profileImage": "CamiloLaiton.png",
   "description": {
-    "english": "I'm Camilo Laiton, Masters student in Systems Engineering with substantial experience in deep learning, process development, image processing, and computer vision with the goal of developing AI-based solutions to address real-world challenges.",
-    "spanish": "Soy Camilo Laiton, Estudiante de maestría en Ingeniería de Sistemas con experiencia sustancial en aprendizaje profundo, desarrollo de procesos, procesamiento de imágenes y visión por computadora con el objetivo de desarrollar soluciones basadas en IA para abordar los desafíos del mundo real."
+    "english": "I am Camilo Laiton, a Machine Learning and Computer Vision Engineer focused on deep learning and cloud-scale microscopy image processing. I build production systems for registration, segmentation, and protein prediction that turn petabyte-scale imaging data into scientific insight.",
+    "spanish": "Soy Camilo Laiton, ingeniero de aprendizaje automático y visión por computadora enfocado en aprendizaje profundo y procesamiento de imágenes de microscopía a escala de nube. Construyo sistemas en producción para registro, segmentación y predicción de proteínas que transforman datos de imágenes a escala de petabytes en hallazgos científicos."
   },
   "research": [
     {
@@ -272,11 +272,6 @@
           "title": "Self-attention unet-based architecture for gray matter segmentation in brain imaging",
           "url": "https://www.iiis.org/CDs2023/CD2023Summer/papers/CA353MR.pdf",
           "state": "Published - Conferencia Iberoamericana en Sistemas, Cibernética e Informática (CISCI 2023)"
-        },
-        {
-          "title": "Skull stripping of MRI images using a deep 3D neural network with self-attention modules",
-          "url": "#",
-          "state": "Pending publication"
         }
       ],
       "images": [
@@ -343,33 +338,19 @@
         {
           "url": "https://www.mdpi.com/sensors/sensors-22-02491/article_deploy/html/images/sensors-22-02491-g007.png",
           "desc": "Ideal train platform for passenger flow"
-        },
-        {
-          "url": "images/ferrofluvial/application_domains.png",
-          "desc": "Distribution of the selected papers by application domain"
-        },
-        {
-          "url": "images/ferrofluvial/monitoring_domain.png",
-          "desc": "Distribution of the selected papers by monitoring domain"
-        },
-        {
-          "url": "images/ferrofluvial/communication_security_domain.png",
-          "desc": "Distribution of the selected papers by communication and security domain"
-        },
-        {
-          "url": "images/ferrofluvial/decision_planification_domain.png",
-          "desc": "Distribution of the selected papers by decision and planification techniques domain"
         }
       ]
     },
     {
       "id": "4",
       "startDate": "06/2022",
-      "endDate": "06/2025",
+      "endDate": "12/2026",
       "topics": [
         "Deep Learning",
         "Lightsheet whole-brain",
-        "Cell detection"
+        "Cell detection",
+        "Atlas registration",
+        "Large-scale image processing"
       ],
       "technologies": [
         {
@@ -414,9 +395,29 @@
       },
       "pubs": [
         {
-          "title": "A Scalable, modular pipeline for automated processing and segmentation for whole-brain light microscopy data",
+          "title": "Topographic structure and function of locus coeruleus noradrenaline neurons",
+          "url": "https://www.nature.com/articles/s41586-026-11026-0",
+          "state": "Published - Nature | 2026"
+        },
+        {
+          "title": "3D-MAESTRO: A scalable, modular, portable pipeline for automated processing of large-scale volumetric brain microscopy data",
+          "url": "https://www.biorxiv.org/content/10.64898/2026.09.09.750494v1",
+          "state": "Under review | 2026"
+        },
+        {
+          "title": "Methodology for Generation of a Synthetic Artifact Dataset in Magnetic Resonance Imaging of the Brain",
+          "url": "",
+          "state": "Published - Conference Paper (International Conference on Artificial Intelligence Society 2026) | Best Paper Award"
+        },
+        {
+          "title": "SmartSPIM Pipeline: A Scalable Cloud-Based Image Processing Pipeline for Light-Sheet Microscopy Data",
           "url": "https://academic.oup.com/mam/article/30/Supplement_1/ozae044.216/7719767?login=false",
-          "state": "Preparing for publication"
+          "state": "Published - Microscopy and Microanalysis"
+        },
+        {
+          "title": "Cloud Pipelines for Large-Scale Lightsheet Image Processing",
+          "url": "https://doi.org/10.1093/micmic/ozad067.501",
+          "state": "Published - Microscopy and Microanalysis | DOI: 10.1093/micmic/ozad067.501"
         }
       ],
       "images": []
@@ -521,22 +522,22 @@
         }
       ],
       "english": {
-        "title": "Software Engineer III - Computer Vision",
+        "title": "Software Engineer III - Machine Learning and Computer Vision",
         "description": [
-          "In charge of a large-scale image processing pipeline in the cloud, which has processed 3.4 PBs (~3600 mesoscale whole-brains) at the moment.",
-          "Retrospective flatfield correction applied to large-scale data (hundreds of GBs to many TBs).",
-          "Development of a template to be able to register brains acquired from light-sheet imaging to the Common Coordinate Framework (CCF).",
-          "Large-scale mRNA identification using cloud computing resources.",
-          "Large-scale deep learning cell segmentation using cloud computing resources.",
-          "Large-scale cell deep learning detection (ZYX positions) in brain acquired with lightsheet microscopes.",
-          "Foundational model for brain imaging data from lightsheet microscopy.",
-          "Deep learning model for Bassoon and PSD95 protein prediction (neuronal synapse) from pan-protein signal."
+          "Processed 3+ Petabytes of SmartSPIM light-sheet data in a cloud pipeline, reducing per-brain cost from more than $150 to around $50 on average (about 67% reduction).",
+          "Built a light-sheet brain template and cross-validated registration pipeline to Allen CCF v3, improving overlap from 0.70 to 0.85 Dice and reducing mean edge error from 53 um to 24 um.",
+          "Designed a scalable deep learning deformable registration network (diffeomorphic SVF-integrated U-Net) that improved mean NCC by 7% over ANTs while preserving topology.",
+          "Parallelized template creation across cloud instances, reducing build time from 30 hours to 5 hours per template.",
+          "Built an MAE-pretrained model for protein prediction (anti-Bassoon and anti-PSD95) from pan-protein channel data with lower validation loss and fewer false positives than a traditional U-Net baseline.",
+          "Developing a multi-resolution, multi-modal foundational image encoder for light-sheet microscopy with self-supervised pretraining over 3 Petabytes of image data.",
+          "Re-engineered Cellpose for cloud-scale segmentation, reducing end-to-end runtime from 46 hours to 4 hours on a 200 GB dataset.",
+          "Mentored engineers and co-authored publications, including a Best Paper Award at the International Conference on Artificial Intelligence Society 2026."
         ]
       },
       "spanish": {
         "title": "Desarrollador de software III - Visión por computadora",
         "description": [
-          "Responsable de un sistema de procesamiento de imágenes a gran escala en la nube, que actualmente ha procesado 3 PBs.",
+          "Responsable de un sistema de procesamiento de imágenes a gran escala en la nube, que actualmente ha procesado 3 Petabytes.",
           "Corrección retrospectiva de campo plano aplicada a datos a gran escala (de cientos de GB a muchos TB).",
           "Desarrollo de una plantilla para registrar cerebros adquiridos mediante microscopía de lámina de luz en el Marco de Coordenadas Comunes (CCF).",
           "Identificación de ARNm a gran escala mediante recursos de computación en la nube.",
@@ -588,11 +589,11 @@
       "english": {
         "title": "Software Engineer II - Computer Vision",
         "description": [
-          "Development of image processing pipelines for light-sheet microscope images using Code Ocean and AWS.",
-          "Some of the image processing steps are: destriping, 3D reconstruction, format image conversion to OME-Zarr, atlas registration, and explorative analysis on cell segmentation and mRNA detection.",
-          "Development of a bioimage analysis software package to estimate stitching errors in large-scale microscopy datasets.",
-          "Automated data upload to AWS using a HPC cluster.",
-          "Working with large-scale data from hundreds of GBs to many TBs from very high-resolution microscopes."
+          "Built image processing pipelines for light-sheet microscopy on AWS with Nextflow, including destriping, 3D reconstruction, OME-Zarr conversion, atlas registration, and exploratory cell and mRNA analysis.",
+          "Developed alignment methods that reduced median cell-coordinate error from approximately 10.7 um to approximately 1.7 um (about 85% reduction), below single-voxel resolution.",
+          "Built a bioimage analysis package to estimate stitching errors in large-scale microscopy datasets.",
+          "Validated a destriping method that recovered the artifact-free baseline on simulated stripe data.",
+          "Handled TB-scale data transfer workflows from high-resolution microscopes through HPC and cloud systems."
         ]
       },
       "spanish": {
@@ -611,7 +612,7 @@
       "endDate": "06/2022",
       "location": "Barranquilla, Colombia",
       "images": [],
-      "organization": "Technological Instutute of Soledad Atlantico - ITSA",
+      "organization": "Institucion Universitaria ITSA",
       "technologies": [
         {
           "name": "Linux",
@@ -635,12 +636,11 @@
         }
       ],
       "english": {
-        "title": "Software Developer",
+        "title": "Software Engineer",
         "description": [
-          "Software Developer in a Multiparametric Intelligent System for the recognition of patterns associated with neurocognitive dysfunctions in young people",
-          "Reviewed the state of the art tools for the segmentation of brain anatomical structures",
-          "Installation of tools on Linux environments",
-          "Developed the intermediary module in Python for the automatic use of brain image segmentation tools"
+          "Surveyed state-of-the-art tools for brain anatomical structure segmentation.",
+          "Built a Python module to orchestrate segmentation tools automatically on Linux environments.",
+          "Contributed to a multiparametric intelligent system for pattern recognition associated with neurocognitive dysfunctions in young people."
         ]
       },
       "spanish": {
@@ -654,7 +654,7 @@
       }
     },
     {
-      "startDate": "10/2021",
+      "startDate": "11/2021",
       "endDate": "04/2022",
       "location": "Cartagena, Colombia",
       "images": [],
@@ -679,8 +679,8 @@
       "english": {
         "title": "Research Associate",
         "description": [
-          "Designed a calculation tool based on simulation software that allows a technical analysis of electromobility solutions for rail-river transport",
-          "Provided support and analysis of dual-use technologies incorporating electromobility technologies available in the Colombian and international market, identifying the map of actors, costs of the proposals, and those responsible for the actions and the time required for their materialization"
+          "Built simulation software using evolutionary algorithms to reduce time, emissions, and cost in multimodal transport routes (river, rail, and road).",
+          "Analyzed dual-use electromobility technologies for Colombia's ferrofluvial 4.0 project and mapped actors, costs, and implementation timelines."
         ]
       },
       "spanish": {
@@ -734,10 +734,10 @@
       "english": {
         "title": "Data Engineer",
         "description": [
-          "Implementation of a Geoscientific Data Lake for the Servicio Geológico Colombiano (SGC)",
-          "ETL process development with Azure Datafactory and Azure Databricks",
-          "App Development in Power Apps",
-          "Processing hundreds of GBs of geoscientific data"
+          "Implemented a geoscientific data lake for the Servicio Geologico Colombiano (SGC).",
+          "Developed ETL workflows with Azure Data Factory and Azure Databricks.",
+          "Tuned mappings, sessions, and workflows to improve throughput in production data pipelines.",
+          "Processed hundreds of GB of geoscientific data and integrated outputs into operational systems."
         ]
       },
       "spanish": {
@@ -812,6 +812,12 @@
       "category": "ml"
     },
     {
+      "name": "Keras",
+      "class": "cib:keras",
+      "color": "orangered",
+      "category": "ml"
+    },
+    {
       "name": "Pytorch",
       "class": "skill-icons:pytorch-dark",
       "color": "",
@@ -836,6 +842,18 @@
       "category": "ml"
     },
     {
+      "name": "OME-Zarr",
+      "class": "mdi:cube-outline",
+      "color": "",
+      "category": "ml"
+    },
+    {
+      "name": "TensorStore",
+      "class": "mdi:database-outline",
+      "color": "",
+      "category": "ml"
+    },
+    {
       "name": "scikit-learn",
       "class": "skill-icons:scikitlearn-dark",
       "color": "",
@@ -850,6 +868,12 @@
     {
       "name": "AWS",
       "class": "skill-icons:aws-dark",
+      "color": "",
+      "category": "infra"
+    },
+    {
+      "name": "Azure",
+      "class": "logos:microsoft-azure",
       "color": "",
       "category": "infra"
     },
@@ -869,6 +893,12 @@
       "name": "SLURM / HPC",
       "class": "ant-design:cluster-outlined",
       "color": "white",
+      "category": "infra"
+    },
+    {
+      "name": "Apptainer / Singularity",
+      "class": "mdi:package-variant-closed",
+      "color": "",
       "category": "infra"
     },
     {
